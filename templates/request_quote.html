@@ -90,6 +90,120 @@
     }
 }
 
+/* Container for Floating Social Icons */
+.social-icons-container {
+    position: fixed;
+    bottom: 20px;  /* Adjust to where you want the icons to start vertically */
+    right: 20px;   /* Adjust horizontal position */
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;  /* Aligns the icons vertically */
+    align-items: center;  /* Centers the icons horizontally */
+}
+
+/* WhatsApp Floating Logo */
+.whatsapp-logo {
+    margin-bottom: 10px; /* Space between icons */
+}
+
+.whatsapp-logo img {
+    width: 60px;  /* Default size for larger screens */
+    height: 60px;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.whatsapp-logo img:hover {
+    transform: scale(1.1);  /* Adds hover effect to the logo */
+}
+
+/* Facebook Floating Logo */
+.facebook-logo {
+    margin-bottom: 10px; /* Space between icons */
+}
+
+.facebook-logo img {
+    width: 60px;  /* Default size for larger screens */
+    height: 60px;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.facebook-logo img:hover {
+    transform: scale(1.1);  /* Adds hover effect to the logo */
+}
+
+/* TripAdvisor Floating Logo */
+.tripadvisor-logo {
+    margin-bottom: 10px; /* Space between icons */
+}
+
+.tripadvisor-logo img {
+    width: 60px;  /* Default size for larger screens */
+    height: 60px;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.tripadvisor-logo img:hover {
+    transform: scale(1.1);  /* Adds hover effect to the logo */
+}
+
+/* Get Your Guide Floating Logo */
+.getyourguide-logo {
+    margin-bottom: 10px; /* Space between icons */
+}
+
+.getyourguide-logo img {
+    width: 60px;  /* Default size for larger screens */
+    height: 60px;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.getyourguide-logo img:hover {
+    transform: scale(1.1);  /* Adds hover effect to the logo */
+}
+
+/* Mobile Specific Styling */
+@media (max-width: 768px) {
+    .social-icons-container {
+        right: 10px; /* Adjust horizontal position for smaller screens */
+    }
+
+    .whatsapp-logo img, .facebook-logo img, .tripadvisor-logo img, .getyourguide-logo img {
+        width: 50px;  /* Adjust size for mobile */
+        height: 50px;
+    }
+}
+
+/* Extra Small Mobile Styling (Optional) */
+@media (max-width: 480px) {
+    .social-icons-container {
+        right: 5px; /* Adjust horizontal position for very small screens */
+    }
+
+    .whatsapp-logo img, .facebook-logo img, .tripadvisor-logo img, .getyourguide-logo img {
+        width: 45px;  /* Smaller size for very small screens */
+        height: 45px;
+    }
+}
+/* Extra Small Mobile Styling (Optional) */
+@media (max-width: 480px) {
+    .social-icons-container {
+        right: 5px; /* Adjust horizontal position for very small screens */
+    }
+
+    .whatsapp-logo img, .facebook-logo img, .tripadvisor-logo img {
+        width: 45px;  /* Smaller size for very small screens */
+        height: 45px;
+    }
+}
+
         /* Info Cards */
         .info-cards {
             display: flex;
@@ -312,6 +426,42 @@
     </select>
     </div>
 </div>
+
+<div class="social-icons-container">
+            
+    <!-- WhatsApp Logo --> 
+    <div class="whatsapp-logo">
+        <a href="https://wa.me/+447591464519">
+            <img src="{{ url_for('static', filename='whatsup.jpg') }}" alt="WhatsApp" />
+        </a>
+    </div>
+
+      <!-- Facebook Logo -->
+    <div class="facebook-logo">
+        <a href="https://www.facebook.com/profile.php?id=61564874641704" target="_blank">
+            <img src="{{ url_for('static', filename='facebook.jpg') }}" alt="Facebook" />
+        </a>
+    </div>
+
+    <!-- TripAdvisor Logo -->
+    <div class="tripadvisor-logo">
+        <a href="https://www.tripadvisor.co.uk/Profile/179egyptr?tab=reviews" target="_blank">
+            <img src="{{ url_for('static', filename='tripadvos.jpg') }}" alt="TripAdvisor" />
+        </a>
+
+        <!-- Get Your Guide Logo -->
+<div class="getyourguide-logo">
+<a href="https://www.getyourguide.com/?partner_id=4ELHU8V&utm_medium=online_publisher&cmp=desk&msclkid=95ce669c037414b512410179cccaef3a" target="_blank">
+    <img src="{{ url_for('static', filename='daytrips.jpg') }}" alt="Get Your Guide" />
+</a>
+</div>
+</div>   
+
+    </div>
+</div>
+          
+
+</header>
 
 <div class="container">
     <h1>Request a Custom Quote</h1>
