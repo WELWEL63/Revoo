@@ -1,0 +1,1499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trip Details</title>
+    <link rel="stylesheet" href="path/to/view_details.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f4f7fc;
+    color: #2a476d;
+    font-size: 2rem;
+    font-weight: 500;
+    line-height: 1.6;
+}
+/* view_details.css */
+.sticky-header {
+    position: sticky;
+    top: 0;
+    background-color: #195268;
+    z-index: 1000;
+    border-bottom: 1px solid #eaeaea;
+    padding: 8px 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sticky-header .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.sticky-header .logo {
+    font-size: 35px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #e2980d;
+    flex: 1;
+}
+
+.sticky-header .nav-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex: 2;
+}
+
+.sticky-header .nav-links li {
+    display: inline-block;
+}
+
+.sticky-header .nav-links li a {
+    text-decoration: none;
+    color: #f3e9e9;
+    font-size: 22px;
+    transition: color 0.3s;
+}
+
+.sticky-header .nav-links li a:hover {
+    color: #007bff;
+}
+
+.sticky-header .social-icons {
+    display: flex;
+    gap: 15px;
+    flex: 1;
+    justify-content: flex-end;
+}
+
+.sticky-header .social-icons a {
+    color: #faf4f4;
+    text-decoration: none;
+    font-size: 25px;
+    transition: color 0.3s;
+}
+
+.sticky-header .social-icons a:hover {
+    color: #007bff;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .sticky-header {
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding: 10px;
+    }
+
+    .sticky-header .logo {
+        margin-bottom: 8px;
+        flex: none;
+    }
+
+    .sticky-header .nav-links {
+        flex: 1;
+        justify-content: center;
+        margin-bottom: 8px;
+    }
+
+    .sticky-header .social-icons {
+        margin-top: 5px;
+        flex: none;
+    }
+}
+
+/* Page Content */
+.content {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+
+/* Main Container */
+.container {
+    margin-top: 50px;
+    padding: 20px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Titles & Headings */
+h1, h5 {
+    color: #2a9d8f;
+    font-weight: bold;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+}
+
+.section-title {
+    margin-bottom: 20px;
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: #96057e;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* WhatsApp Floating Logo */
+.whatsapp-logo {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.whatsapp-logo img {
+    width: 80px;  /* Default size for larger screens */
+    height: 80px;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.whatsapp-logo img:hover {
+    transform: scale(1.1);  /* Adds a hover effect to the logo */
+}
+
+/* Facebook Floating Logo */
+.facebook-logo {
+    position: fixed;
+    bottom: 20px;
+    right: 100px; /* Adjust this value to position further left or right */
+    z-index: 1000;
+}
+
+.facebook-logo img {
+    width: 80px;  /* Default size for larger screens */
+    height: 80px;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.facebook-logo img:hover {
+    transform: scale(1.1);  /* Adds hover effect to the logo */
+}
+
+/* Mobile Specific Styling */
+@media (max-width: 768px) {
+    /* WhatsApp Floating Logo */
+    .whatsapp-logo {
+        right: 10px; /* Slightly adjust the position for smaller screens */
+        bottom: 10px; /* Move the icon up a little */
+    }
+
+    .whatsapp-logo img {
+        width: 50px;  /* Adjust size for mobile */
+        height: 50px;
+    }
+
+    /* Facebook Floating Logo */
+    .facebook-logo {
+        right: 80px; /* Adjust this value for better positioning */
+        bottom: 10px; /* Move the icon up a little */
+    }
+
+    .facebook-logo img {
+        width: 60px;  /* Adjust size for mobile */
+        height: 60px;
+    }
+}
+
+/* Extra Small Mobile Styling (Optional) */
+@media (max-width: 480px) {
+    /* WhatsApp Floating Logo */
+    .whatsapp-logo {
+        right: 5px;
+        bottom: 5px;
+    }
+
+    .whatsapp-logo img {
+        width: 45px;  /* Smaller size for very small screens */
+        height: 45px;
+    }
+
+    /* Facebook Floating Logo */
+    .facebook-logo {
+        right: 60px; /* Adjust to fit the screen */
+        bottom: 5px; /* Adjust the position */
+    }
+
+    .facebook-logo img {
+        width: 50px;  /* Smaller size for very small screens */
+        height: 50px;
+    }
+}
+
+        /* Social Media Icons */
+        .social-icons-header {
+            display: flex;
+            gap: 15px;
+        }
+        .social-icons-header a {
+            color: white;
+            font-size: 18px;
+            transition: 0.3s;
+        }
+        .social-icons-header a:hover {
+            color: #f4a261;
+            transform: scale(1.1);
+        }
+
+        /* TripAdvisor Floating Logo */
+.tripadvisor-logo {
+    position: fixed;
+    bottom: 20px;
+    right: 180px; /* Adjust this value to position further left */
+    z-index: 1000;
+}
+
+.tripadvisor-logo img {
+    width: 80px;  /* Default size for larger screens */
+    height: 80px;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.tripadvisor-logo img:hover {
+    transform: scale(1.1);  /* Adds a hover effect to the logo */
+}
+
+/* Mobile Specific Styling */
+@media (max-width: 768px) {
+    .tripadvisor-logo {
+        right: 150px; /* Adjust position for smaller screens */
+        bottom: 10px;
+    }
+
+    .tripadvisor-logo img {
+        width: 60px;  /* Adjust size for mobile */
+        height: 60px;
+    }
+}
+
+/* Extra Small Mobile Styling (Optional) */
+@media (max-width: 480px) {
+    .tripadvisor-logo {
+        right: 120px;
+        bottom: 5px;
+    }
+
+    .tripadvisor-logo img {
+        width: 50px;  /* Smaller size for very small screens */
+        height: 50px;
+    }
+}
+
+
+/* Sections */
+.info-section,
+.pricing-section,
+.image-section,
+.video-container {
+    background-color: #ffffff;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+    margin-bottom: 35px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.info-section:hover,
+.pricing-section:hover,
+.image-section:hover,
+.video-container:hover {
+    transform: translateY(-5px);
+}
+
+/* Paragraph & Icons */
+.info-section p,
+.pricing-section p {
+    margin: 12px 0;
+    font-size: 1.3rem;
+}
+
+.info-section i,
+.pricing-section i {
+    margin-right: 10px;
+    color: #058379;
+    font-size: 1.6rem;
+}
+
+/* Pricing */
+.pricing-section .total-price {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #e76f51;
+}
+
+/* Buttons */
+.btn-primary {
+    background: linear-gradient(135deg, #114664, #0479af);
+    border: none;
+    width: 100%;
+    padding: 14px 22px;
+    border-radius: 10px;
+    color: white;
+    font-size: 1.6rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #264653, #1a4a3f);
+    transform: scale(1.05);
+}
+
+/* Video & Map Styling */
+.video-container iframe,
+.location-map iframe {
+    width: 100%;
+    height: 380px;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.location-map iframe {
+    height: 380px;
+}
+
+    .container {
+        padding: 15px;
+    }
+
+    .info-section,
+    .pricing-section,
+    .image-section,
+    .video-container {
+        padding: 18px;
+    }
+
+    .btn-primary {
+        font-size: 2rem;
+        padding: 12px 18px;
+    }
+
+    .video-container iframe,
+    .location-map iframe {
+        height: 300px;
+    }
+     
+    /* Trip Images Header */
+    .trip-header {
+        text-align: center;
+        margin-bottom: 20px;
+        padding: 20px;
+        background: linear-gradient(135deg, #203966, #1a375c);
+        color: white;
+        border-radius: 12px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .trip-header i {
+        color: #2a9d8f;
+        font-size: 1.6rem;
+        margin-right: 10px;
+    }
+
+    .trip-header h2 {
+        font-size: 2rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+        letter-spacing: 1px;
+    }
+
+    .trip-header p {
+        font-size: 1.2rem;
+        opacity: 0.9;
+    }
+
+    /* Slideshow Container */
+    .slideshow-container {
+        position: relative;
+        max-width: 100%;
+        height: 500px;
+        margin: auto;
+        overflow: hidden;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Slide Wrapper */
+    .slides-wrapper {
+        display: flex;
+        width: 600%;
+        transition: transform 0.6s ease-in-out;
+    }
+
+    /* Each Slide */
+    .slide {
+        min-width: 100%;
+    }
+
+    .slide img {
+        width: 100%;
+        height: 500px;
+        object-fit: cover;
+        border-radius: 15px;
+    }
+
+    /* Navigation Arrows */
+    .prev, .next {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(0, 0, 0, 0.5);
+        color: white;
+        border: none;
+        padding: 15px;
+        font-size: 24px;
+        cursor: pointer;
+        transition: 0.5s;
+        border-radius: 50%;
+    }
+
+    .prev:hover, .next:hover {
+        background: rgba(0, 0, 0, 0.8);
+    }
+
+    .prev { left: 15px; }
+    .next { right: 15px; }
+
+    /* Dots */
+    .dots-container {
+        text-align: center;
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .dot {
+        height: 12px;
+        width: 12px;
+        margin: 0 5px;
+        background: rgba(14, 124, 97, 0.5);
+        display: inline-block;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .dot.active, .dot:hover {
+        background: white;
+    }
+
+    /* Responsive Design */
+    @media screen and (max-width: 768px) {
+        .trip-header {
+            flex-direction: column;
+        }
+
+        .trip-header h2 {
+            font-size: 1.8rem;
+        }
+
+        .trip-header p {
+            font-size: 1rem;
+        }
+
+        .slideshow-container {
+            height: 350px;
+        }
+
+        .slide img {
+            height: 350px;
+        }
+
+        .prev, .next {
+            padding: 10px;
+            font-size: 18px;
+        }
+
+        .dot {
+            height: 10px;
+            width: 10px;
+        }
+    }
+
+       
+        /* Reviews Section */
+.reviews-section {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(191, 4, 197, 0.1);
+    margin-top: 20px;
+}
+
+.review-box {
+    background: #f9f9f9;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.review-box:hover {
+    transform: scale(1.02);
+}
+
+.review-header {
+    display: flex;
+    align-items: center;
+    font-size: 60px;
+    color: #3498db;
+    margin-bottom: 10px;
+}
+
+.user-icon {
+    font-size: 30px;
+    color: #3498db;
+    margin-right: 10px;
+}
+
+.reviewer-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+    
+}
+
+.reviewer-email {
+    font-size: 1.2rem;
+    color: #4c4a4d;
+}
+
+.review-rating {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+}
+
+.review-comment {
+    font-style: italic;
+    color: #444;
+}
+
+.no-reviews {
+    text-align: center;
+    color: #880588;
+    font-size: 1.2rem;
+}
+
+/* Review Form */
+.review-form {
+    background: #f5f5f5;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    font-weight: bold;
+    font-size: 28px;
+  
+    color: #920792;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.btn-submit {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background: #084a69;
+    color: white;
+    font-size: 25px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-submit:hover {
+    background: #297fb9;
+}
+
+/* Star Rating System */
+.star-rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: start;
+}
+
+.star-rating input {
+    display: none;
+}
+
+.star-rating label {
+    font-size: 24px;
+    color: #ddd;
+    cursor: pointer;
+    transition: color 0.2s ease-in-out;
+}
+
+.star-rating input:checked ~ label {
+    color: #f1c40f;
+}
+
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+    color: #f1c40f;
+}
+
+ 
+/* Footer Styling */
+.footer {
+    background: linear-gradient(135deg, #0c4668, #11455a);
+    color: white;
+    padding: 60px 0;
+    text-align: center;
+    margin-top: 50px;
+    width: 100%; /* Full width of the screen */
+    position: relative;
+    overflow: hidden;
+}
+
+/* Center content in the footer */
+.footer .container {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* Footer Logo */
+.footer-logo {
+    font-size: 32px;
+    font-weight: bold;
+    color: #f4a261;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* Footer Text */
+.footer p {
+    font-size: 16px;
+    margin-top: 10px;
+    color: #ddd;
+    line-height: 1.6;
+}
+
+/* Footer Heading */
+.footer h5 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #f4a261;
+    text-transform: uppercase;
+}
+
+/* Footer Links */
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+.footer-links li {
+    margin: 10px 0;
+}
+
+.footer-links a {
+    color: #f4f4f4;
+    text-decoration: none;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+    transition: 0.3s;
+}
+
+.footer-links a:hover {
+    color: #f4a261;
+    text-decoration: underline;
+}
+
+/* Social Icons */
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+    padding-bottom: 20px;
+}
+
+.social-icons a {
+    color: white;
+    font-size: 25px;
+    transition: 0.3s;
+}
+
+.social-icons a:hover {
+    color: #f4a261;
+    transform: scale(1.1);
+}
+
+/* Footer Bottom */
+.footer-bottom {
+    margin-top: 30px;
+    font-size: 14px;
+    color: #ddd;
+    text-align: center;
+}
+
+/* Footer Gradient Overlay (optional, for a more dynamic look) */
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: -1;
+}
+
+    </style>
+<div>
+
+</div>
+   
+    
+        <!-- Sticky Modern Header -->
+        <header class="sticky-header" id="navbar">
+            <div class="container d-flex justify-content-between align-items-center">
+                <a href="/" class="logo">Trips & Tours <i class="fas fa-globe-africa"></i></a>
+                <ul class="nav-links">
+                    <li><a href="/">{{ _('Home') }}</a></li>
+                    <li><a href="/about">{{ _('About') }}</a></li>
+                    <li><a href="/contact">{{ _('Contact') }}</a></li>
+                    <li><a href="/quote">{{ _('Request a Quote') }}</a></li>
+                                                  
+                                   
+                    </select>
+    
+                       <!-- Social Media -->
+                       <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+            </header>
+    
+        <!-- Spacer to Prevent Overlapping -->
+        <div class="header-space"></div>
+        <script src="script.js"></script>
+    </body>
+    </html>
+    
+     <div class="container">
+        <h1 class="text-center">{{ trip['Trip Name'] }}</h1>
+        <p class="text-center"><strong>TRIPID:</strong> {{ trip['Trip ID'] }} <n>
+         <strong>Location:</strong> {{ trip['Destination'] }}</p>
+
+ <!-- Video Section -->
+ <div class="video-container mt-4">
+    <h5><i class="fas fa-video"></i> {{ _('Trip Video') }}</h5>
+    <video controls style="width: 100%; height: auto; border-radius: 15px;">
+        <source src="{{ url_for('static', filename='nile-valley-thisisegypt.mp4') }}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
+
+
+        <!-- Trip Information Section -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="info-section">
+                    <h5 class="section-title"><i class="fas fa-info-circle"></i> Trip Details</h5>
+                    <p><i class="fas fa-map-marker-alt"></i><strong>Description:</strong> {{ trip.get('Description', 'N/A') }}</p>
+                    <p><p><i class="fas fa-star"></i>
+                        <strong>{{ _('Rating:') }}</strong>
+                        {% if trip.get('Rating') and '/' in trip['Rating'] %}
+                            {% set rating_value = trip['Rating'].split('/')[0]|float %}
+                            {% set rating_count = trip['Rating'].split('/')[1] %}
+                    
+                            <!-- Full stars -->
+                            {% for _ in range(rating_value|int) %}
+                                <i class="fas fa-star" style="color: rgb(207, 170, 6);"></i>
+                            {% endfor %}
+                    
+                            <!-- Half star if applicable -->
+                            {% if rating_value % 1 >= 0.5 %}
+                                <i class="fas fa-star-half-alt" style="color: rgb(185, 159, 7);"></i>
+                            {% endif %}
+                    
+                            <!-- Display number of ratings -->
+                            ({{ rating_count }} reviews)
+                        {% else %}
+                            N/A
+                        {% endif %}
+                    </p>
+                    <p><i class="fas fa-map-marker-alt"></i><strong>{{ _('Meeting Point:') }}</strong> {{ trip.get('Meeting Point', 'N/A') }} -</p>
+                <p><i class="fas fa-clock"></i><strong>{{ _('Departure Time:') }}</strong> {{ trip.get('Departure Time', 'N/A') }} -</p>
+                <p><i class="fas fa-clock"></i><strong>{{ _('Return Time:') }}</strong> {{ trip.get('Return Time', 'N/A') }} -</p>
+                <p><i class="fas fa-map-marker-alt"></i><strong>{{ _('Duration:') }}</strong> {{ trip.get('Duration', 'N/A') }} -</p>
+                <p><i class="fas fa-comments"></i><strong>{{ _('Reviews Count:') }}</strong> {{ trip.get('Reviews Count', 'N/A') }} -</p>
+                <p><i class="fas fa-calendar-alt"></i><strong>{{ _('Available Spots:') }}</strong> {{ trip.get('Available Spots', 'N/A') }} -</p>
+                <p><i class="fas fa-user-tie"></i><strong>{{ _('Tour Guide:') }}</strong> {{ trip.get('Tour Guide', 'N/A') }} -</p>
+                <p><i class="fas fa-users"></i><strong>{{ _('Group Size:') }}</strong> {{ trip.get('Group Size', 'N/A') }} -</p>
+                  </div>
+            </div>
+
+            
+            
+
+            <div class="col-md-6">
+                <div class="info-section">
+                    <p><i class="fas fa-envelope"></i><strong>{{ _('Contact Email:') }}</strong> {{ trip.get('Contact Email', 'N/A') }} -</p>
+                    <p><i class="fas fa-phone-alt"></i><strong>{{ _('Contact Phone:') }}</strong> {{ trip.get('Contact Phone', 'N/A') }} -</p>
+                    <p><i class="fas fa-suitcase"></i><strong>{{ _('What to Bring:') }}</strong> {{ trip.get('What to Bring', 'N/A') }} -</p>
+                    <p><i class="fas fa-bicycle"></i><strong>{{ _('Trip Difficulty:') }}</strong> {{ trip.get('Trip Difficulty', 'N/A') }} -</p>
+
+                    <p><i class="fas fa-language"></i><strong>{{ _('Languages Available:') }}</strong> {{ trip.get('Languages Available', 'N/A') }} -</p>
+                <p><i class="fas fa-child"></i><strong>{{ _('Age Restrictions:') }}</strong> {{ trip.get('Age Restrictions', 'N/A') }} -</p>
+                <p><i class="fas fa-map-marker-alt"></i><strong>{{ _('Accessibility:') }}</strong> {{ trip.get('Accessibility', 'N/A') }} -</p>
+                <p><i class="fas fa-map-marker-alt"></i><strong>{{ _('Trip Category:') }}</strong> {{ trip.get('Trip Category', 'N/A') }} -</p>
+                <p><i class="fas fa-bus"></i><strong>{{ _('Transportation Type:') }}</strong> {{ trip.get('Transportation Type', 'N/A') }} -</p>
+                <p><i class="fas fa-utensils"></i><strong>{{ _('Meals Included:') }}</strong> {{ trip.get('Meals Included', 'N/A') }} -</p>
+                <p><i class="fas fa-ban"></i><strong>{{ _('Cancellation Policy:') }}</strong> {{ trip.get('Cancellation Policy', 'N/A') }} -</p>
+                </div>
+            </div>
+        </div>
+<!-- Trip Images Header -->
+<div class="trip-header">
+    <i class="fas fa-camera-retro"></i>
+    <h2>- {{ _('Explore Your Trip Memories') }}</h2>
+        <p>- {{ _('Capture the essence of your journey with stunning visuals.') }}</p>
+</div>
+
+<div class="social-icons-container">
+    <!-- WhatsApp Logo --> 
+    <div class="whatsapp-logo">
+        <a href="https://wa.me/+447591464519">
+            <img src="{{ url_for('static', filename='whatsup.jpg') }}" alt="WhatsApp" />
+        </a>
+    </div>
+
+    <!-- Facebook Logo -->
+    <div class="facebook-logo">
+        <a href="https://www.facebook.com/profile.php?id=61564874641704" target="_blank">
+            <img src="{{ url_for('static', filename='facebook.jpg') }}" alt="Facebook" />
+        </a>
+    </div>
+
+    <!-- TripAdvisor Logo -->
+    <div class="tripadvisor-logo">
+        <a href="https://www.tripadvisor.co.uk/Profile/179egyptr?tab=reviews" target="_blank">
+            <img src="{{ url_for('static', filename='tripadvos.jpg') }}" alt="TripAdvisor" />
+        </a>
+    </div>
+</div>
+
+              
+              <!-- Slideshow Container -->
+               
+<div class="slideshow-container">
+        {% for i in range(6) %}  <!-- Adjust range to match max images -->
+        <div class="slide fade">
+            <img src="{{ url_for('static', filename='images/' + trip['Trip ID'] + (('_' + i|string) if i > 0 else '') + '.jpg') }}" 
+                 alt="Trip Image {{ i }}">
+        </div>
+    {% endfor %}
+
+    <!-- Navigation Buttons -->
+    <button class="prev" onclick="changeSlide(-1)">&#10094;</button>
+    <button class="next" onclick="changeSlide(1)">&#10095;</button>
+
+    <!-- Dots (Pagination) -->
+    <div class="dots-container">
+        {% for i in range(6) %}
+            <span class="dot" onclick="currentSlide({ i , 1 })"></span>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- CSS Styles -->
+<style>
+    /* Slideshow Container */
+    .slideshow-container {
+        position: relative;
+        max-width: 100%;
+        height: 500px;
+        margin: auto;
+        overflow: hidden;
+        border-radius: 15px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Slides */
+    .slide {
+        display: none;
+        width: 100%;
+        height: 100%;
+    }
+
+    .slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 15px;
+    }
+
+    /* Fade Animation */
+    .fade {
+        animation: fadeEffect 1.5s ease-in-out;
+    }
+
+    @keyframes fadeEffect {
+        from { opacity: 0.4; }
+        to { opacity: 1; }
+    }
+
+    /* Navigation Arrows */
+    .prev, .next {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(0, 0, 0, 0.5);
+        color: white;
+        border: none;
+        padding: 12px;
+        font-size: 24px;
+        cursor: pointer;
+        transition: 0.3s;
+        border-radius: 50%;
+    }
+
+    .prev:hover, .next:hover {
+        background: rgba(0, 0, 0, 0.8);
+    }
+
+    .prev { left: 15px; }
+    .next { right: 15px; }
+
+    /* Dots */
+    .dots-container {
+        text-align: center;
+        position: absolute;
+        bottom: 15px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .dot {
+        height: 12px;
+        width: 12px;
+        margin: 0 5px;
+        background: rgba(255, 255, 255, 0.5);
+        display: inline-block;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .dot.active, .dot:hover {
+        background: white;
+    }
+
+    /* Responsive Design */
+    @media screen and (max-width: 768px) {
+        .slideshow-container {
+            height: 350px;
+        }
+
+        .prev, .next {
+            padding: 8px;
+            font-size: 18px;
+        }
+
+        .dot {
+            height: 10px;
+            width: 10px;
+        }
+    }
+
+    
+</style>
+
+<!-- JavaScript -->
+<script>
+    let slideIndex = 0;
+    let slides = document.getElementsByClassName("slide");
+    let dots = document.getElementsByClassName("dot");
+
+    function showSlides() {
+        for (let i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        slideIndex++;
+        if (slideIndex > slides.length) { slideIndex = 1; }
+        
+        slides[slideIndex - 1].style.display = "block";
+
+        for (let i = 0; i < dots.length; i++) {
+            dots[i].classList.remove("active");
+        }
+        dots[slideIndex - 1].classList.add("active");
+
+        setTimeout(showSlides, 3000); // Auto-change every 3 sec
+    }
+
+    function changeSlide(n) {
+        slideIndex += n - 1;
+        if (slideIndex < 0) slideIndex = 0;
+        showSlides();
+    }
+
+    function currentSlide(n) {
+        slideIndex = n - 1;
+        showSlides();
+    }
+
+    document.addEventListener("DOMContentLoaded", showSlides);
+</script>
+            <!-- Pricing Section -->
+        <div class="pricing-section">
+           <h5><i class="fas fa-tags"></i> Pricing Information</h5>
+           <p><strong>Selected Trip Date:</strong> {{ selected_date }}</p>
+           <p><strong>Alternative Date:</strong> {{ alt_day }}</p>
+             
+<p><i class="fas fa-user"></i> <strong>Price per Adult:</strong> ${{ price_adult }}</p>
+<p><i class="fas fa-child"></i> <strong>Price per Child:</strong> ${{ price_child }}</p>
+<p><i class="fas fa-users"></i> <strong>{{ search_params.get('adults', 1) }} Adult(s) x ${{ price_adult }} = ${{ search_params.get('adults', 1) * price_adult }}</strong></p>
+<p><i class="fas fa-child"></i> <strong>{{ search_params.get('children', 0) }} Child(ren) x ${{ price_child }} = ${{ search_params.get('children', 0) * price_child }}</strong></p>
+<h5 class="total-price"><i class="fas fa-dollar-sign"></i> Total Price: ${{ total_price }}</h5>
+
+<p><i class="fas fa-check-circle"></i> <strong>Included in Price:</strong> {{ trip['Included in Price'] }}</p>
+<p><i class="fas fa-times-circle"></i> <strong>Not Included:</strong> {{ trip['Not Included'] }}</p>
+
+
+
+            <p><i class="fas fa-gift"></i><strong>Special Offers:</strong> {{ trip.get('Special Offers', 'N/A') }}</p>
+            <p><i class="fas fa-calendar-alt"></i><strong>Trip Schedule:</strong> {{ trip.get('Trip Schedule', 'N/A') }}</p>
+
+<div>
+            <div class="booking">
+                <h3>Booking & Reservation</h3>
+                <p>To book & make Reservation, click the button below and follow the instructions. <div>
+
+                </div>
+
+                      
+            <a href="/book/{{ trip['Trip ID'] }}?adults={{ adults }}&children={{ children }}" class="btn btn-primary mt-3">Book Now</a>
+
+
+
+                  <!-- Weather Section -->  
+                  <div class="weather-container">
+                    <h2>Weather in Your Destinations</h2>
+            <script>
+                (function(d, s, id) {
+                    if (d.getElementById(id)) {
+                        if (window.__TOMORROW__) {
+                            window.__TOMORROW__.renderWidget();
+                        }
+                        return;
+                    }
+                    const fjs = d.getElementsByTagName(s)[0];
+                    const js = d.createElement(s);
+                    js.id = id;
+                    js.src = "https://www.tomorrow.io/v1/widget/sdk/sdk.bundle.min.js";
+        
+                    fjs.parentNode.insertBefore(js, fjs);
+                })(document, 'script', 'tomorrow-sdk');
+                </script>
+        
+                <div class="tomorrow"
+                   data-location-id="031817,031862,031841,031811,031832,031802"
+                   data-language="EN"
+                   data-unit-system="METRIC"
+                   data-skin="dark"
+                   data-widget-type="current6"
+                   style="padding-bottom:22px;position:relative;"
+                >
+                  <a
+                    href="https://www.tomorrow.io/weather-api/"
+                    rel="nofollow noopener noreferrer"
+                    target="_blank"
+                    style="position: absolute; bottom: 0; transform: translateX(-50%); left: 50%;"
+                  >
+                    <img
+                      alt="Powered by the Tomorrow.io Weather API"
+                      src="https://weather-website-client.tomorrow.io/img/powered-by.svg"
+                      width="250"
+                      height="18"
+                    />
+                  </a>
+                </div>
+
+ <!-- Google Map Section -->
+ <div class="map-container">
+    <h2>Explore your Trip with Interactive Maps</h2>
+            <iframe
+    width="100%"
+    height="400"
+    frameborder="0"
+    style="border:0; border-radius: 10px;"
+    allowfullscreen=""
+    referrerpolicy="no-referrer-when-downgrade"
+    src="https://www.google.com/maps?q={{ trip['Trip Name'] | urlencode }}+{{ trip['Destination'] | urlencode }}&output=embed">
+</iframe>
+
+<!-- Travel Tips Section -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Essential Travel Tips for Your Excursion</title>
+    <style>
+        /* Reset some default styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* General Body Styles */
+        body {
+            font-family: 'Helvetica', sans-serif;
+            background-color: #f8f9fa;
+            color: #294b64;
+            padding: 0 15px;
+            line-height: 1.6;
+        }
+
+        /* Header Styles */
+        h1 {
+            font-size: 36px;
+            text-align: center;
+            margin-top: 40px;
+            color: #8f0688;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* Accordion Container */
+        .accordion-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        /* Accordion Button */
+        .accordion {
+            background-color: #185069;
+            color: white;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            font-size: 22px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Accordion Hover Effect */
+        .accordion:hover, .accordion.active {
+            background-color: #b92982;
+            transform: scale(1.03);
+        }
+
+        /* Panel (Answer) Style */
+        .panel {
+            padding: 15px;
+            background-color: #ecf0f1;
+            border-radius: 8px;
+            display: none;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+
+        /* Mobile Responsive Styles */
+        @media (max-width: 600px) {
+            .accordion {
+                font-size: 16px;
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            .panel p {
+                font-size: 14px;
+            }
+        }
+
+        /* Smooth Transitions */
+        .accordion, .panel {
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .panel.open {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .panel.closed {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <h1>Your Ultimate Guide to Epic Egypt Excursions!</h1>
+
+    <!-- Accordion Container -->
+    <div class="accordion-container">
+
+        <!-- Question 1 -->
+        <button class="accordion">1. How can I plan ahead for an excursion?</button>
+        <div class="panel">
+            <p>Start your day early to maximize time at popular sites. This helps you avoid crowds and experience the attractions in a more peaceful atmosphere.</p>
+        </div>
+
+        <!-- Question 2 -->
+        <button class="accordion">2. What should I wear on an excursion?</button>
+        <div class="panel">
+            <p>Dress light and comfortable, but ensure your outfit is modest when visiting religious sites. Wear breathable fabrics and always bring a hat and sunglasses for sun protection.</p>
+        </div>
+
+        <!-- Question 3 -->
+        <button class="accordion">3. How can I stay hydrated and protect my skin?</button>
+        <div class="panel">
+            <p>Always carry a bottle of water, especially during desert trips or in the heat. Sunscreen is essential to prevent sunburn, and don’t forget lip balm for extra protection.</p>
+        </div>
+
+        <!-- Question 4 -->
+        <button class="accordion">4. How should I respect local customs and etiquette?</button>
+        <div class="panel">
+            <p>Respect the culture by dressing modestly, especially at religious sites. Always ask for permission before taking pictures, particularly of local people or sacred places.</p>
+        </div>
+
+        <!-- Question 5 -->
+        <button class="accordion">5. How do I prepare for the heat and outdoor activities?</button>
+        <div class="panel">
+            <p>Bring light clothing, a scarf, and sunglasses for shade. Wear comfortable shoes for walking, and pack snacks and water for long trips through desert or rural areas.</p>
+        </div>
+
+        <!-- Question 6 -->
+        <button class="accordion">6. Should I carry cash or cards during excursions?</button>
+        <div class="panel">
+            <p>Cash is often preferred in local markets and for small purchases. Carry small change for tips and small vendors, as many do not accept cards.</p>
+        </div>
+
+        <!-- Question 7 -->
+        <button class="accordion">7. What about bargaining at markets?</button>
+        <div class="panel">
+            <p>Bargaining is a cultural norm in Egypt. Start with a lower offer, and don’t be afraid to negotiate in a friendly, respectful way.</p>
+        </div>
+
+        <!-- Question 8 -->
+        <button class="accordion">8. How can I keep my valuables safe?</button>
+        <div class="panel">
+            <p>Store important items like your passport, money, and valuables in a hotel safe. Consider using a secure money belt or a neck pouch while out on excursions.</p>
+        </div>
+
+        <!-- Question 9 -->
+        <button class="accordion">9. How do I choose a reliable tour guide?</button>
+        <div class="panel">
+            <p>Book through trusted agencies or ask for recommendations. Choose guides with good reviews and credentials to ensure an informative and safe experience.</p>
+        </div>
+
+        <!-- Question 10 -->
+        <button class="accordion">10. How can I manage my time during excursions?</button>
+        <div class="panel">
+            <p>Plan your itinerary so you’re not rushed, especially at larger sites. Take time to appreciate the details, and remember, some attractions require more time than others.</p>
+        </div>
+
+        <!-- Question 11 -->
+        <button class="accordion">11. How can I stay connected while on an excursion?</button>
+        <div class="panel">
+            <p>Get a local SIM card or ensure your phone plan covers international data. Having access to maps and translation tools is helpful during the trip.</p>
+        </div>
+
+        <!-- Question 12 -->
+        <button class="accordion">12. How should I respect the environment during my trip?</button>
+        <div class="panel">
+            <p>Be mindful of your surroundings by not littering, and try to reduce waste. Respect the historical sites by not touching artifacts or graffiti.</p>
+        </div>
+
+    </div>
+
+    <!-- JavaScript for Accordion -->
+    <script>
+        const accordions = document.querySelectorAll('.accordion');
+        accordions.forEach((accordion) => {
+            accordion.addEventListener('click', function() {
+                const panel = this.nextElementSibling;
+                this.classList.toggle('active');
+                if (panel.style.display === "block") {
+                    panel.style.display = "none";
+                    panel.classList.remove("open");
+                    panel.classList.add("closed");
+                } else {
+                    panel.style.display = "block";
+                    panel.classList.remove("closed");
+                    panel.classList.add("open");
+                }
+            });
+        });
+    </script> 
+
+        <div class="text-center mt-4">
+            <a href="/search" class="btn btn-secondary">Back to Search Results</a>
+        </div>
+    </div>
+
+<!-- Reviews Section -->
+<div class="reviews-section mt-5">
+    <h3><i class="fas fa-star text-warning"></i> This what customer says about us</h3>
+
+    <!-- Display Existing Reviews -->
+    <div id="reviews-list">
+        {% if reviews %}
+            {% for review in reviews %}
+                <div class="review-box">
+                    <div class="review-header">
+                        <i class="fas fa-user-circle user-icon"></i>
+                        <div>
+                            <p class="reviewer-name"><strong>{{ review["name"] }}</strong></p>
+                           
+                        </div>
+                    </div>
+                    <div class="review-rating">
+                        {% for i in range(review["rating"]|int) %}
+                            <i class="fas fa-star text-warning"></i>
+                        {% endfor %}
+                        {% for i in range(5 - review["rating"]|int) %}
+                            <i class="far fa-star text-muted"></i>
+                        {% endfor %}
+                    </div>
+                    <p class="review-comment">"{{ review["comment"] }}"</p>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p class="no-reviews">No reviews yet. Be the first to review!</p>
+        {% endif %}
+    </div>
+
+    <!-- Review Submission Form -->
+    <h3 class="mt-4">Share your experanice with other travellers and let us know what you would say!</h3>
+    <form action="{{ url_for('submit_review', trip_id=trip['Trip ID']) }}" method="post" class="review-form">
+        <div class="form-group">
+            <label for="name"><i class="fas fa-user"></i> Name:</label>
+            <input type="text" id="name" name="name" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label for="email"><i class="fas fa-envelope"></i> Email:</label>
+            <input type="email" id="email" name="email" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label for="rating"><i class="fas fa-star"></i> Rating:</label>
+            <div class="star-rating">
+                <input type="radio" name="rating" value="5" id="star5"><label for="star5">&#9733;</label>
+                <input type="radio" name="rating" value="4" id="star4"><label for="star4">&#9733;</label>
+                <input type="radio" name="rating" value="3" id="star3"><label for="star3">&#9733;</label>
+                <input type="radio" name="rating" value="2" id="star2"><label for="star2">&#9733;</label>
+                <input type="radio" name="rating" value="1" id="star1"><label for="star1">&#9733;</label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="comment"><i class="fas fa-comment"></i> Comment:</label>
+            <textarea id="comment" name="comment" class="form-control" rows="3" required></textarea>
+        </div>
+
+        <button type="submit" class="btn-submit"><i class="fas fa-paper-plane"></i> Submit Review</button>
+    </form>
+</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Stunning Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <!-- Logo & Description -->
+            <div class="col-md-4">
+                <h4 class="footer-logo">EgyptTrips <i class="fas fa-globe-africa"></i></h4>
+                <p>Discover the beauty of Egypt with expertly curated trips and excursions.</p>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="col-md-4">
+                <h5>Quick Links</h5>
+                <ul class="footer-links">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/about">About Us</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                    <li><a href="/quote">Request a Quote</a></li>
+                </ul>
+            </div>
+
+            <!-- Social Media -->
+            <div class="col-md-4">
+                <h5>Follow Us</h5>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Copyright -->
+        <div class="footer-bottom">
+            <p>&copy; 2025 EgyptTrips. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+
+
+
+</body>
+</html>

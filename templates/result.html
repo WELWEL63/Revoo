@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results | EgyptTrips</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  
+    <style>
+
+        
+        
+/* Sticky Header */
+.sticky-header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(29, 53, 87, 0.85);
+    padding: 12px 18px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1000;
+    transition: top 0.4s ease-in-out, background 0.3s ease;
+}
+
+.sticky-header.hide {
+    top: -100px;
+}
+
+/* Logo */
+.sticky-header .logo {
+    color: #f4a261;
+    font-size: 28px;
+    font-weight: bold;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Navigation */
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 18px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+    transition: color 0.3s ease-in-out;
+}
+
+.nav-links a:hover {
+    color: #f4a261;
+}
+
+/* Mobile Menu */
+.menu-toggle {
+    display: none;
+    font-size: 28px;
+    color: white;
+    cursor: pointer;
+}
+
+/* Mobile Styling */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        background: rgba(29, 53, 87, 0.95);
+        position: absolute;
+        top: 60px;
+        right: 10px;
+        width: 200px;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease-in-out;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links a {
+        padding: 10px 0;
+        font-size: 16px;
+        text-align: center;
+        display: block;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+}
+        /* Social Media Icons */
+        .social-icons-header {
+            display: flex;
+            gap: 15px;
+        }
+        .social-icons-header a {
+            color: white;
+            font-size: 35px;
+            transition: 0.3s;
+        }
+        .social-icons-header a:hover {
+            color: #f4a261;
+            transform: scale(1.1);
+        }
+
+  /* Container for Floating Social Icons */
+.social-icons-container {
+    position: fixed;
+    bottom: 20px;  /* Adjust to where you want the icons to start vertically */
+    right: 20px;   /* Adjust horizontal position */
+    z-index: 1000;
+}
+
+/* WhatsApp Floating Logo */
+.whatsapp-logo {
+    margin-bottom: 10px; /* Space between icons */
+}
+
+.whatsapp-logo img {
+    width: 60px;  /* Default size for larger screens */
+    height: 60px;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.whatsapp-logo img:hover {
+    transform: scale(1.1);  /* Adds hover effect to the logo */
+}
+
+/* Facebook Floating Logo */
+.facebook-logo {
+    margin-bottom: 10px; /* Space between icons */
+}
+
+.facebook-logo img {
+    width: 60px;  /* Default size for larger screens */
+    height: 60px;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.facebook-logo img:hover {
+    transform: scale(1.1);  /* Adds hover effect to the logo */
+}
+
+/* TripAdvisor Floating Logo */
+.tripadvisor-logo {
+    margin-bottom: 10px; /* Space between icons */
+}
+
+.tripadvisor-logo img {
+    width: 60px;  /* Default size for larger screens */
+    height: 60px;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.tripadvisor-logo img:hover {
+    transform: scale(1.1);  /* Adds hover effect to the logo */
+}
+
+/* Mobile Specific Styling */
+@media (max-width: 768px) {
+    .social-icons-container {
+        right: 10px; /* Adjust horizontal position for smaller screens */
+    }
+
+    .whatsapp-logo img, .facebook-logo img, .tripadvisor-logo img {
+        width: 50px;  /* Adjust size for mobile */
+        height: 50px;
+    }
+}
+
+/* Extra Small Mobile Styling (Optional) */
+@media (max-width: 480px) {
+    .social-icons-container {
+        right: 5px; /* Adjust horizontal position for very small screens */
+    }
+
+    .whatsapp-logo img, .facebook-logo img, .tripadvisor-logo img {
+        width: 45px;  /* Smaller size for very small screens */
+        height: 45px;
+    }
+}
+
+
+
+        /* Description & Details */
+p.text-center {
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+/* Highlight Alternative Dates */
+p.text-center strong {
+    color: #e76f51;
+}
+
+/* Adult & Children Info */
+p.text-secondary {
+    font-size: 1.5rem;
+    color: #1c66a7;
+}
+        /* Page Background */
+        body {
+            background: #f8f9fa;
+            padding-top: 80px;
+        }
+
+        
+
+        /* Trip Card Design */
+        .trip-card {
+            background: #ffffff;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0px 4px 10px rgba(4, 56, 133, 0.1);
+            transition: transform 0.3s ease-in-out;
+            padding: 15px;
+        }
+        .trip-card:hover {
+            transform: scale(1.05);
+        }
+        .trip-card img {
+            border-radius: 10px;
+            width: 150%;
+            height: 300px;
+            object-fit: cover;
+        }
+        .trip-card h5 {
+            color: #d320d3;
+            font-weight: bold;
+        }
+        .trip-card p {
+            font-size: 18px;
+            color: #5a076b;
+        }
+        .trip-card .btn-primary {
+            background: #f4a261;
+            border: none;
+            transition: 0.3s;
+            font-weight: bold;
+        }
+        .trip-card .btn-primary:hover {
+            background: #e76f51;
+        }
+        .trip-logo {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+            display: block;
+            margin-bottom: 10px;
+        }
+        .sale-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: linear-gradient(45deg, #ff8c00, #c300ff); /* Gradient from orange to red */
+    color: white;
+    padding: 8px 15px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 20px;  /* Rounded corners for modern aesthetic */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3); /* Soft shadow for depth */
+    opacity: 0.9;
+    transition: transform 0.3s ease, opacity 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.sale-badge i {
+    margin-right: 8px; /* Space between the icon and text */
+    font-size: 1.4rem;
+}
+
+.sale-badge:hover {
+    transform: scale(1.1); /* Slightly enlarge the badge on hover */
+    opacity: 1; /* Full opacity on hover */
+}
+
+
+      /* Footer Styling */
+.footer {
+    background: linear-gradient(135deg, #1d3557, #264653);
+    color: white;
+    padding: 40px 0;
+    text-align: center;
+    margin-top: 50px;
+}
+.footer .container {
+    max-width: 1100px;
+    margin: auto;
+}
+.footer-logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #f4a261;
+}
+.footer p {
+    font-size: 18px;
+    margin-top: 10px;
+    color: #ddd;
+}
+.footer h5 {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #f4a261;
+}
+.footer-links {
+    list-style: none;
+    padding: 0;
+}
+.footer-links li {
+    margin: 8px 0;
+}
+.footer-links a {
+    color: #f4f4f4;
+    text-decoration: none;
+    transition: 0.3s;
+}
+.footer-links a:hover {
+    color: #f4a261;
+}
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
+}
+.social-icons a {
+    color: white;
+    font-size: 35px;
+    transition: 0.3s;
+}
+.social-icons a:hover {
+    color: #f4a261;
+    transform: scale(1.1);
+}
+.footer-bottom {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #ddd;
+}
+
+    </style>
+</head>
+<body>
+
+    <!-- Sticky Header -->
+    <header class="sticky-header" id="navbar">
+        <div class="container d-flex justify-content-between align-items-center">
+            <a href="/" class="logo">EgyptTrips <i class="fas fa-globe-africa"></i></a>
+            <ul class="nav-links">
+                <li><a href="/">{{ _('Home') }}</a></li>
+                <li><a href="/about">{{ _('About') }}</a></li>
+                <li><a href="/contact">{{ _('Contact') }}</a></li>
+                <li><a href="/quote">{{ _('Request a Quote') }}</a></li>
+            </ul>
+                            
+        </select>
+
+            <div class="social-icons-header">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </header>
+
+    <div class="social-icons-container">
+        <!-- WhatsApp Logo --> 
+        <div class="whatsapp-logo">
+            <a href="https://wa.me/+447591464519">
+                <img src="{{ url_for('static', filename='whatsup.jpg') }}" alt="WhatsApp" />
+            </a>
+        </div>
+    
+        <!-- Facebook Logo -->
+        <div class="facebook-logo">
+            <a href="https://www.facebook.com/profile.php?id=61564874641704" target="_blank">
+                <img src="{{ url_for('static', filename='facebook.jpg') }}" alt="Facebook" />
+            </a>
+        </div>
+    
+        <!-- TripAdvisor Logo -->
+        <div class="tripadvisor-logo">
+            <a href="https://www.tripadvisor.co.uk/Profile/179egyptr?tab=reviews" target="_blank">
+                <img src="{{ url_for('static', filename='tripadvos.jpg') }}" alt="TripAdvisor" />
+            </a>
+        </div>
+    </div>
+    
+  <!-- Search Results -->
+<div class="container mt-5">
+    <h1 class="text-center text-dark">{{ _('Discover Breathtaking Trips To') }} {{ destination }}</h1>
+    <p class="text-center text-secondary">Showing results for: <strong>{{ date }}</strong> (Alternative: {{ alt_day }})</p>
+    <p class="text-center text-secondary"><strong>Adults:</strong> {{ adults }} | <strong>Children:</strong> {{ children }}</p>
+
+    {% if trips %}
+        <div class="row mt-4">
+            {% for trip in trips %}
+            <div class="col-md-4">
+                <div class="trip-card position-relative">
+                    <!-- Dynamic image based on Trip ID -->
+    <img src="{{ url_for('static', filename='images/' + trip['Trip ID'] + '.jpg') }}" class="trip-logo img-fluid" alt="Trip Logo">
+
+                   <!-- Sale/Discount Badge (Randomly Applied) -->
+{% if loop.index is divisibleby 2 %}
+<div class="sale-badge">
+    <i class="fas fa-tag"></i> <span>Sale</span>
+</div>
+{% endif %}
+
+
+                    <div class="card-body">
+                        <h5>{{ trip['Trip Name'] }}</h5>
+                        <p class="card-text">{{ trip['short_description'] }}..click view to read more</p>
+                        <p><i class="fas fa-map-marker-alt"></i> <strong>{{ _('Location:') }}</strong> {{ trip['Destination'] }}</p>
+                        <p><i class="fas fa-clock"></i> <strong>{{ _('Duration:') }}</strong> {{ trip['Duration'] }}</p>
+                        <p>
+                            <i class="fas fa-star"></i><strong>{{ _('Rating:') }}</strong>
+                            {% set rating_value = trip['Rating'].split('/')[0]|float %}
+                            {% set rating_count = trip['Rating'].split('/')[1] %}
+                        
+                            <!-- Full stars -->
+                            {% for _ in range(rating_value|int) %}
+                                <i class="fas fa-star" style="color: rgb(209, 162, 7);"></i>
+                            {% endfor %}
+                        
+                            <!-- Half star if applicable -->
+                            {% if rating_value % 1 >= 0.5 %}
+                                <i class="fas fa-star-half-alt" style="color: rgb(190, 141, 6);"></i>
+                            {% endif %}
+                        
+                            <!-- Display number of ratings -->
+                            ({{ rating_count }} reviews)
+                        </p>
+
+                        <div class="trip-pricing">
+                            <p><i class="fas fa-user"></i> <strong>Price per Adult:</strong> <span class="price-adult">${{ trip['Price Adult'] }}</span></p>
+                            <p><i class="fas fa-child"></i> <strong>Price per Child:</strong> <span class="price-child">${{ trip['Price Child'] }}</span></p>
+                        
+                            <div class="price-breakdown mt-3">
+                                <p><i class="fas fa-user-friends"></i> 
+                                    <strong>{{ adults }} Adult(s) x ${{ trip['Price Adult'] }} = 
+                                    <span class="price-adult">${{ adults * trip['Price Adult'] }}</span></strong>
+                                </p>
+                                <p><i class="fas fa-child"></i> 
+                                    <strong>{{ children }} Child(ren) x ${{ trip['Price Child'] }} = 
+                                    <span class="price-child">${{ children * trip['Price Child'] }}</span></strong>
+                                </p>
+                            </div>
+                        
+                            <h5 class="total-price mt-3">
+                                <i class="fas fa-wallet"></i> {{ _('Party Total Price:') }} 
+                                <span class="price-total">${{ trip['Total Price']|int }}</span>
+                            </h5>
+                        </div>
+
+                        <a href="/view/{{ trip['Trip ID'] }}?adults={{ adults }}&children={{ children }}&price_adult={{ trip['Price Adult'] }}&price_child={{ trip['Price Child'] }}" class="btn btn-primary mt-3">View Details</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="alert alert-warning text-center mt-4">
+            {{ _('No trips found for this destination. Please try another date or destination.') }}
+        </div>
+    {% endif %}
+
+    <div class="text-center mt-4">
+        <a href="/" class="btn btn-secondary">{{ _('Back to Search') }}</a>
+    </div>
+</div>
+
+    <!-- Stunning Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <!-- Logo & Description -->
+            <div class="col-md-4">
+                <h4 class="footer-logo">EgyptTrips <i class="fas fa-globe-africa"></i></h4>
+                <p>Discover the beauty of Egypt with expertly curated trips and excursions.</p>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="col-md-4">
+                <h5>{{ _('Quick Links') }}</h5>
+                <ul class="footer-links">
+                    <li><a href="/">{{ _('Home') }}</a></li>
+                    <li><a href="/about">{{ _('About Us') }}</a></li>
+                    <li><a href="/contact">{{ _('Contact') }}</a></li>
+                    <li><a href="/quote">{{ _('Request a Quote') }}</a></li>
+                </ul>
+            </div>
+
+            <!-- Social Media -->
+            <div class="col-md-4">
+                <h5>Follow Us</h5>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Copyright -->
+        <div class="footer-bottom">
+            <p>&copy; 2025 EgyptTrips. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

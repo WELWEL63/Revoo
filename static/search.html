@@ -1,0 +1,1361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EgyptTrips | Find Your Perfect Excursion</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <style>
+        body { 
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f8f9fa;
+    color: #2f4e72;
+}
+
+/* Sticky Header */
+.sticky-header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(29, 53, 87, 0.85);
+    padding: 12px 18px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1000;
+    transition: top 0.4s ease-in-out, background 0.3s ease;
+}
+
+.sticky-header.hide {
+    top: -100px;
+}
+
+/* Logo */
+.sticky-header .logo {
+    color: #f4a261;
+    font-size: 28px;
+    font-weight: bold;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Navigation */
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 18px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+    transition: color 0.3s ease-in-out;
+}
+
+.nav-links a:hover {
+    color: #f4a261;
+}
+
+/* Mobile Menu */
+.menu-toggle {
+    display: none;
+    font-size: 28px;
+    color: white;
+    cursor: pointer;
+}
+
+/* Mobile Styling */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        background: rgba(29, 53, 87, 0.95);
+        position: absolute;
+        top: 60px;
+        right: 10px;
+        width: 200px;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease-in-out;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links a {
+        padding: 10px 0;
+        font-size: 16px;
+        text-align: center;
+        display: block;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+}
+/* WhatsApp Floating Logo */
+.whatsapp-logo {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.whatsapp-logo img {
+    width: 80px;  /* Default size for larger screens */
+    height: 80px;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.whatsapp-logo img:hover {
+    transform: scale(1.1);  /* Adds a hover effect to the logo */
+}
+
+/* Facebook Floating Logo */
+.facebook-logo {
+    position: fixed;
+    bottom: 20px;
+    right: 100px; /* Adjust this value to position further left or right */
+    z-index: 1000;
+}
+
+.facebook-logo img {
+    width: 80px;  /* Default size for larger screens */
+    height: 80px;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.facebook-logo img:hover {
+    transform: scale(1.1);  /* Adds hover effect to the logo */
+}
+
+/* Mobile Specific Styling */
+@media (max-width: 768px) {
+    /* WhatsApp Floating Logo */
+    .whatsapp-logo {
+        right: 10px; /* Slightly adjust the position for smaller screens */
+        bottom: 10px; /* Move the icon up a little */
+    }
+
+    .whatsapp-logo img {
+        width: 50px;  /* Adjust size for mobile */
+        height: 50px;
+    }
+
+    /* Facebook Floating Logo */
+    .facebook-logo {
+        right: 80px; /* Adjust this value for better positioning */
+        bottom: 10px; /* Move the icon up a little */
+    }
+
+    .facebook-logo img {
+        width: 60px;  /* Adjust size for mobile */
+        height: 60px;
+    }
+}
+
+/* Extra Small Mobile Styling (Optional) */
+@media (max-width: 480px) {
+    /* WhatsApp Floating Logo */
+    .whatsapp-logo {
+        right: 5px;
+        bottom: 5px;
+    }
+
+    .whatsapp-logo img {
+        width: 45px;  /* Smaller size for very small screens */
+        height: 45px;
+    }
+
+    /* Facebook Floating Logo */
+    .facebook-logo {
+        right: 60px; /* Adjust to fit the screen */
+        bottom: 5px; /* Adjust the position */
+    }
+
+    .facebook-logo img {
+        width: 50px;  /* Smaller size for very small screens */
+        height: 50px;
+    }
+}
+
+        /* Social Media Icons */
+        .social-icons-header {
+            display: flex;
+            gap: 15px;
+        }
+        .social-icons-header a {
+            color: white;
+            font-size: 18px;
+            transition: 0.3s;
+        }
+        .social-icons-header a:hover {
+            color: #f4a261;
+            transform: scale(1.1);
+        }
+
+        /* TripAdvisor Floating Logo */
+.tripadvisor-logo {
+    position: fixed;
+    bottom: 20px;
+    right: 180px; /* Adjust this value to position further left */
+    z-index: 1000;
+}
+
+.tripadvisor-logo img {
+    width: 80px;  /* Default size for larger screens */
+    height: 80px;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.tripadvisor-logo img:hover {
+    transform: scale(1.1);  /* Adds a hover effect to the logo */
+}
+
+/* Mobile Specific Styling */
+@media (max-width: 768px) {
+    .tripadvisor-logo {
+        right: 150px; /* Adjust position for smaller screens */
+        bottom: 10px;
+    }
+
+    .tripadvisor-logo img {
+        width: 60px;  /* Adjust size for mobile */
+        height: 60px;
+    }
+}
+
+/* Extra Small Mobile Styling (Optional) */
+@media (max-width: 480px) {
+    .tripadvisor-logo {
+        right: 120px;
+        bottom: 5px;
+    }
+
+    .tripadvisor-logo img {
+        width: 50px;  /* Smaller size for very small screens */
+        height: 50px;
+    }
+}
+
+
+     /* Slideshow Background */
+.slideshow-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80vh; /* Adjusted for better visibility */
+    overflow: hidden;
+    z-index: -1;
+}
+
+.slideshow-container img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 2s ease-in-out;
+    filter: brightness(90%) contrast(110%); /* Enhanced clarity */
+}
+
+.slideshow-container img.active {
+    opacity: 1;
+}
+
+/* Mobile Optimization */
+@media (max-width: 768px) {
+    .slideshow-container {
+        height: 70vh; /* Adjusts height for small screens */
+    }
+
+    .slideshow-container img {
+        filter: brightness(90%) contrast(105%);
+    }
+
+    .video-container iframe, .location-map iframe {
+        width: 90%;
+        height: 250px;
+        border-radius: 10px;
+        box-shadow: 0 6px 10px rgb(255, 255, 255);
+    }
+}
+
+
+      /* Hero Section */
+.hero {
+    position: relative;
+    height: 75vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: left;
+    color: #355064;
+    padding: 20px;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    text-shadow: 2px 2px 15px rgba(34, 78, 99, 0.4);
+    letter-spacing: 1px;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Search Box */
+.search-box {
+    background: rgba(239, 227, 248, 0.2);
+    font-size: 1.3rem;
+    font-weight: 600;
+    backdrop-filter: blur(10px);
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0px 6px 12px rgba(65, 50, 50, 0.15);
+    position: relative;
+    z-index: 2;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+    .hero {
+        text-align: center;
+        padding: 15px;
+        height: 65vh;
+    }
+
+    .hero h1 {
+        font-size: 1rem;
+        text-shadow: 1px 1px 8px rgba(34, 78, 99, 0.3);
+        line-height: 1.3;
+    }
+
+    .search-box {
+        font-size: 1.1rem;
+        padding: 18px;
+        border-radius: 12px;
+        box-shadow: 0px 4px 8px rgba(65, 50, 50, 0.1);
+    }
+}
+
+        
+
+  /* ========== Popular Trips Section Styling ========== */
+
+.popular-trips-container {
+    margin-top: 40px;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Section Title */
+.popular-trips-container h2 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #a30e8f;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* ========== Tabs Styling ========== */
+.nav-tabs {
+    display: flex;
+    justify-content: center;
+    background-color: #244a5f;
+    border-radius: 10px;
+    padding: 8px;
+    box-shadow: 0px 3px 12px rgba(0, 0, 0, 0.08);
+    overflow-x: auto; /* Allows horizontal scrolling for tabs */
+    white-space: nowrap;
+}
+
+.nav-item {
+    list-style: none;
+}
+
+.nav-link {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #faf6f6;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    border-radius: 8px;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    background-color: #e76f51;
+    color: #fff;
+    transform: scale(1.05);
+}
+
+/* Trip Cards Section */
+.popular-trip-card {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.popular-trip-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.12);
+}
+
+/* Main Trip Image */
+.popular-trip-card img.main-trip-image {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+/* Trip Logo */
+.popular-trip-card img.popular-trip-logo {
+    width: 80px;
+    height: 80px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(255, 255, 255, 0.85);
+    padding: 5px;
+    border-radius: 50%;
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Card Body */
+.card-body {
+    padding: 20px;
+    text-align: center;
+}
+
+/* Trip Title */
+.card-title {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #e76f51;
+    margin-bottom: 10px;
+}
+
+/* Trip Description */
+.card-text {
+    font-size: 1.1rem;
+    color: #244a5f;
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+/* Price per Person */
+.trip-price {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #fff;
+    background: #a30e8f;
+    padding: 8px 14px;
+    border-radius: 18px;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
+    display: inline-block;
+    text-transform: uppercase;
+}
+
+/* View Details Button */
+.btn-info {
+    background-color: #1a435a;
+    border: none;
+    color: #fff;
+    font-size: 1.3rem;
+    padding: 10px 20px;
+    border-radius: 40px;
+    transition: 0.3s ease;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.btn-info:hover {
+    background-color: #e76f51;
+    transform: scale(1.05);
+}
+
+/* ========== Mobile & Small Screen Optimization ========== */
+
+@media screen and (max-width: 768px) {
+    /* Tabs */
+    .nav-tabs {
+        flex-direction: row;
+        padding: 5px;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .nav-link {
+        font-size: 1.2rem;
+        padding: 8px;
+        text-align: center;
+        width: auto;
+        flex-shrink: 0;
+    }
+
+    /* Trip Cards */
+    .popular-trip-card {
+        flex: 1 1 100%;
+    }
+
+    .popular-trip-card img.main-trip-image {
+        height: 180px;
+    }
+
+    /* Section Title */
+    .popular-trips-container h2 {
+        font-size: 1.8rem;
+    }
+
+    /* Price per Person */
+    .trip-price {
+        font-size: 1.2rem;
+        padding: 6px 10px;
+    }
+
+    /* View Details Button */
+    .btn-info {
+        font-size: 1.1rem;
+        padding: 10px 18px;
+    }
+}
+
+/* For Very Small Screens (Less than 480px) */
+@media screen and (max-width: 480px) {
+    .nav-link {
+        font-size: 1rem;
+        padding: 6px;
+    }
+
+    .card-title {
+        font-size: 1.3rem;
+    }
+
+    .card-text {
+        font-size: 1rem;
+    }
+
+    .trip-price {
+        font-size: 1rem;
+    }
+
+    .btn-info {
+        font-size: 1rem;
+        padding: 8px 16px;
+    }
+}
+
+/* General styling */
+.video-container { 
+    margin-top: 20px;
+    padding: 15px;
+    text-align: center;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.video-container h5 {
+    font-size: 2rem; /* Decreased font size for better mobile readability */
+    font-weight: bold;
+    color: #255672;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    text-transform: capitalize;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.video-container h5 i {
+    color: #ac0782;
+    font-size: 3rem; /* Increased icon size for better visibility */
+}
+
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 15px;
+    margin-top: 15px;
+}
+
+.video-item {
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0px 4px 20px rgba(171, 17, 177, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.video-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 6px 30px rgba(171, 17, 177, 0.3);
+}
+
+/* Responsive layout for tablets and smaller devices */
+@media (max-width: 768px) {
+    .video-container h5 {
+        font-size: 1.5rem; /* Adjusted font size for tablet */
+    }
+
+    .video-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .video-container h5 {
+        font-size: 1.5rem; /* Smaller font size for mobile */
+    }
+
+    .video-grid {
+        grid-template-columns: 1fr;
+        padding: 10px;
+    }
+
+    .video-item {
+        box-shadow: 0px 4px 15px rgba(171, 17, 177, 0.2);
+    }
+}
+
+
+/* ========== Why Choose Us Section Styling ========== */
+.why-choose-us {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 40px 20px;
+    background: linear-gradient(135deg, #f3f4f6, #e1e1e1);
+    border-radius: 15px;
+}
+
+/* Individual Feature Box */
+.why-choose-us-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #03567c;
+    border-radius: 15px;
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.12);
+    padding: 25px;
+    width: 100%;
+    max-width: 300px;
+    text-align: center;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s;
+}
+
+.why-choose-us-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+}
+
+/* Icon Styling */
+.icon-container {
+    background: #910485; 
+    color: #ffffff;
+    border-radius: 50%;
+    padding: 20px;
+    margin-bottom: 15px;
+    font-size: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+}
+
+/* Title Styling */
+.why-choose-us-item h3 {
+    font-size: 1.6rem;
+    color: #ffffff;
+    font-weight: 700;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+/* Description Styling */
+.why-choose-us-item p {
+    font-size: 1rem;
+    color: #fcf9f9;
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* ========== Button Styling ========== */
+.btn-primary {
+    background: #28465e;
+    border: none;
+    color: #fff;
+    font-size: 1.2rem;
+    padding: 12px 24px;
+    border-radius: 30px;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: #083c6d;
+    transform: scale(1.05);
+}
+
+/* ========== Responsive Adjustments ========== */
+
+/* Tablet (768px and below) */
+@media screen and (max-width: 768px) {
+    .why-choose-us {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .why-choose-us-item {
+        width: 90%;
+        max-width: 350px;
+    }
+
+    .icon-container {
+        font-size: 36px;
+        width: 70px;
+        height: 70px;
+        padding: 15px;
+    }
+
+    .why-choose-us-item h3 {
+        font-size: 1.6rem;
+    }
+
+    .why-choose-us-item p {
+        font-size: 1rem;
+    }
+}
+
+/* Mobile (480px and below) */
+@media screen and (max-width: 480px) {
+    .why-choose-us-item {
+        width: 100%;
+    }
+
+    .icon-container {
+        font-size: 30px;
+        width: 60px;
+        height: 60px;
+        padding: 12px;
+    }
+
+    .why-choose-us-item h3 {
+        font-size: 1.4rem;
+    }
+
+    .why-choose-us-item p {
+        font-size: 0.95rem;
+    }
+
+    .btn-primary {
+        font-size: 1rem;
+        padding: 10px 20px;
+    }
+}
+/* ========== Footer Styling ========== */
+.footer {
+    background: linear-gradient(135deg, #1d3557, #264653);
+    color: white;
+    padding: 50px 20px;
+    text-align: center;
+    margin-top: 50px;
+}
+
+/* Footer Container */
+.footer .container {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Footer Logo */
+.footer-logo {
+    font-size: 28px;
+    font-weight: bold;
+    color: #f4a261;
+    margin-bottom: 10px;
+}
+
+/* Footer Text */
+.footer p {
+    font-size: 18px;
+    margin-top: 10px;
+    color: #ddd;
+    line-height: 1.6;
+}
+
+/* Footer Headings */
+.footer h5 {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #f4a261;
+    text-transform: uppercase;
+}
+
+/* Footer Links */
+.footer-links {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+.footer-links li {
+    margin: 5px 0;
+}
+
+.footer-links a {
+    color: #f4f4f4;
+    text-decoration: none;
+    font-size: 18px;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: #f4a261;
+    transform: translateY(-3px);
+}
+
+/* Social Media Icons */
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 15px;
+}
+
+.social-icons a {
+    color: white;
+    font-size: 30px;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: #f4a261;
+    transform: scale(1.15);
+}
+
+/* Footer Bottom Text */
+.footer-bottom {
+    margin-top: 25px;
+    font-size: 14px;
+    color: #ddd;
+}
+
+/* ========== Responsive Adjustments ========== */
+
+/* Tablet (768px and below) */
+@media screen and (max-width: 768px) {
+    .footer {
+        padding: 40px 15px;
+    }
+
+    .footer-links {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-links a {
+        font-size: 16px;
+    }
+
+    .social-icons a {
+        font-size: 28px;
+    }
+}
+
+/* Mobile (480px and below) */
+@media screen and (max-width: 480px) {
+    .footer {
+        padding: 30px 10px;
+    }
+
+    .footer-logo {
+        font-size: 24px;
+    }
+
+    .footer p {
+        font-size: 16px;
+    }
+
+    .footer h5 {
+        font-size: 20px;
+    }
+
+    .footer-links {
+        gap: 10px;
+    }
+
+    .footer-links a {
+        font-size: 15px;
+    }
+
+    .social-icons {
+        gap: 10px;
+    }
+
+    .social-icons a {
+        font-size: 26px;
+    }
+}
+
+    </style>
+</head>
+
+<body>
+
+    <header class="sticky-header" id="navbar">
+        <div class="container d-flex justify-content-between align-items-center">
+            <a href="/" class="logo">Trips & Tours <i class="fas fa-globe-africa"></i></a>
+            <ul class="nav-links">
+                <li><a href="/">{{ _('Home') }}</a></li>
+                <li><a href="/about">{{ _('About') }}</a></li>
+                <li><a href="/contact">{{ _('Contact') }}</a></li>
+                <li><a href="/quote">{{ _('Request a Quote') }}</a></li>
+            </ul>
+            <div class="language-selector">
+                <select onchange="window.location.href=this.value">
+                    <option value="{{ url_for('set_language', lang='en') }}">🇬🇧 English</option>
+                    <option value="{{ url_for('set_language', lang='ar') }}">🇸🇦 Arabic</option>
+                    <option value="{{ url_for('set_language', lang='fr') }}">🇫🇷 French</option>
+                    <option value="{{ url_for('set_language', lang='de') }}">🇩🇪 German</option>
+                    <option value="{{ url_for('set_language', lang='es') }}">🇪🇸 Spanish</option>
+                </select>
+
+                   <!-- Social Media -->
+                   <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+        </header>
+<div class="social-logos">
+    <!-- WhatsApp Logo --> 
+    <div class="whatsapp-logo">
+        <a href="https://wa.me/+447591464519">
+            <img src="{{ url_for('static', filename='whatsup.jpg') }}" alt="WhatsApp" />
+        </a>
+    </div>
+
+    <!-- Facebook Logo -->
+    <div class="facebook-logo">
+        <a href="https://www.facebook.com/profile.php?id=61564874641704" target="_blank">
+            <img src="{{ url_for('static', filename='facebook.jpg') }}" alt="Facebook" />
+        </a>
+    </div>
+
+    <!-- TripAdvisor Logo -->
+    <div class="tripadvisor-logo">
+        <a href="https://www.tripadvisor.co.uk/Profile/179egyptr?tab=reviews" target="_blank">
+            <img src="{{ url_for('static', filename='tripadvos.jpg') }}" alt="TripAdvisor" />
+        </a>
+    </div>
+</div>
+
+               
+    </header>
+    
+     
+
+    <!-- Slideshow Background -->
+    <div class="slideshow-container">
+        <img src="{{ url_for('static', filename='2015Sale.jpg') }}" class="active">
+        <img src="{{ url_for('static', filename='11.jpg') }}">
+        <img src="{{ url_for('static', filename='1 (2).jpg') }}">
+        <img src="{{ url_for('static', filename='slide-8.jpg') }}">
+        <img src="{{ url_for('static', filename='abosimple.jpg') }}">
+        <img src="{{ url_for('static', filename='WinterSun_masthead.jpg') }}">
+        <img src="{{ url_for('static', filename='slide-1.jpg') }}">
+        <img src="{{ url_for('static', filename='slide-6.jpg') }}">
+        <img src="{{ url_for('static', filename='amazin.jpg') }}">
+    </div>
+
+    <!-- Hero Section with Search -->
+<div class="hero">
+    <div class="container">
+        <!-- Search Box -->
+        <form action="/result" method="post" class="search-box mt-4">
+            <h1>Find Your Perfect Excursion in Egypt</h1>
+            <p>Explore breathtaking locations and book your dream adventure.</p>
+
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label for="destination" class="form-label">Destination</label>
+                    <select id="destination" name="destination" class="form-select" required>
+                        <option value="">Select Destination</option>
+                        {% for dest in destinations %}
+                            <option value="{{ dest }}">{{ dest }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="date" class="form-label">Preferred Date</label>
+                    <input type="date" id="date" name="date" class="form-control" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="alt_day" class="form-label">Alternative Day</label>
+                    <input type="date" id="alt_day" name="alt_day" class="form-control">
+                </div>
+                <div class="col-md-3">
+                    <label for="adults" class="form-label">Adults</label>
+                    <input type="number" id="adults" name="adults" class="form-control" min="1" value="1" required>
+                </div>
+                <div class="col-md-3">
+                    <label for="children" class="form-label">Children</label>
+                    <input type="number" id="children" name="children" class="form-control" min="0" value="0">
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <button type="submit" class="btn btn-primary btn-lg">Search Trips</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Tabbed Destinations -->  
+<div class="container popular-trips-container mt-5">
+    <h2 class="text-center">Explore Top Destinations with Our Handpicked Popular Trips!</h2>
+    
+    <!-- Destination Tabs -->
+    <ul class="nav nav-tabs mt-4" id="destination-tabs" role="tablist">
+        {% for destination in destinations %}
+        <li class="nav-item" role="presentation">
+            <a class="nav-link {% if loop.first %}active{% endif %}" 
+               id="tab-{{ destination | lower() | replace(' ', '-') | replace('&', 'and') }}" 
+               data-bs-toggle="tab" 
+               href="#content-{{ destination | lower() | replace(' ', '-') | replace('&', 'and') }}" 
+               role="tab" 
+               aria-controls="content-{{ destination | lower() | replace(' ', '-') | replace('&', 'and') }}" 
+               aria-selected="{% if loop.first %}true{% else %}false{% endif %}">{{ destination }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <!-- Tab Content for Each Destination -->
+    <div class="tab-content mt-4" id="destination-tabs-content">
+        {% for destination, trips in grouped_trips.items() %}
+        <div class="tab-pane fade {% if loop.first %}show active{% endif %}" 
+             id="content-{{ destination | lower() | replace(' ', '-') | replace('&', 'and') }}" 
+             role="tabpanel" 
+             aria-labelledby="tab-{{ destination | lower() | replace(' ', '-') | replace('&', 'and') }}">
+            <div class="row">
+                {% for trip in trips %}
+                <div class="col-md-4">
+                    <div class="card popular-trip-card shadow-sm">
+                        <img src="{{ url_for('static', filename=trip['Trip ID'] + '.jpg') }}" class="trip-logo img-fluid" alt="Trip Logo">
+                        <img src="{{ url_for('static', filename='Deal.jpg') }}" class="popular-trip-logo img-fluid" alt="Trip Logo">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ trip['Trip Name'] }}</h5>
+                            <p class="card-title">{{ trip['Destination'] }}</p>
+                            <p class="card-text">{{ trip['Description'] }}</p>
+                            <p class="trip-price">${{ trip['Price Adult'] }} p.p</p>
+                            <a href="/view/{{ trip['Trip ID'] }}" class="btn btn-info">View Details</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Ensure Bootstrap JS is included -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Fix: Ensure Tabs Work on First Click -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    // Ensure first tab is active on page load
+    let firstTab = document.querySelector('#destination-tabs .nav-link.active');
+    if (firstTab) {
+        let tab = new bootstrap.Tab(firstTab);
+        tab.show();
+    }
+
+    // Fix issue where clicking tabs doesn’t work immediately
+    document.querySelectorAll('#destination-tabs .nav-link').forEach(tabEl => {
+        tabEl.addEventListener('click', function (event) {
+            event.preventDefault();
+            let tab = new bootstrap.Tab(tabEl);
+            tab.show();
+        });
+    });
+});
+</script>
+
+<!-- Add custom CSS to enforce image size consistency -->
+<style>
+    .trip-logo, .popular-trip-logo {
+        width: 150%;       /* Ensures the images fit the width of their container */
+        height: 300px;     /* Sets a fixed height */
+        object-fit: cover; /* Ensures images maintain aspect ratio while filling the container */
+    }
+</style>
+
+    
+    <!-- Why Choose Us Section -->
+<div class="why-choose-us">
+    <div class="why-choose-us-item">
+        <!-- 100% Protected Logo -->
+        <div class="icon-container">
+            <i class="fas fa-shield-alt"></i>
+        </div>
+        <h3>100% Protected</h3>
+        <p>We are a member of Travel Trust of Egypt, your money is 100% protected.</p>
+    </div>
+    
+    <div class="why-choose-us-item">
+        <!-- Holiday Activity Logo (Tree, Beach, Umbrella) -->
+        <div class="icon-container">
+            <i class="fas fa-umbrella-beach"></i> <!-- Beach Umbrella Icon -->
+        </div>
+        <h3>100+ Trips & Holiday activities</h3>
+        <p>Enjoy the perfect blend of nature, beach relaxation, and outdoor adventures for your ideal holiday experience.</p>
+    </div>
+    
+    <div class="why-choose-us-item">
+        <!-- 500+ Happy Customers Logo -->
+        <div class="icon-container">
+            <i class="fas fa-smile-beam"></i>
+        </div>
+        <h3>1000's + Happy Customers</h3>
+        <p>Our customers can't stop sharing their amazing experiences with us. Join the growing community of satisfied travelers!</p>
+    </div>
+    
+    <div class="why-choose-us-item">
+        <!-- 50+ Trusted Suppliers Logo -->
+        <div class="icon-container">
+            <i class="fas fa-handshake"></i>
+        </div>
+        <h3>60+ Experts & Trusted Suppliers</h3>
+        <p>Partnering with the best for a seamless travel experience.</p>
+    </div>
+</div>
+
+
+         <!-- Weather Section -->
+        <style> 
+            /* Ensure widgets are next to each other */
+            .widget-container {
+                display: flex;
+                width: 100%;
+                color: rgb(143, 10, 132);
+                font-size: 50px;
+                font-weight: bolder;
+                flex-wrap: nowrap; /* Prevent wrapping */
+                justify-content: center; /* Center horizontally */
+                align-items: center; /* Align to the top */
+                gap: 80px; /* Space between widgets */
+            }
+        
+            /* Ensure each widget stays within its size */
+            .widget-container > div {
+                flex-shrink: 0; /* Prevent shrinking */
+            }
+        </style>
+        
+        <div class="widget-container">
+            <!-- Weather Section -->
+            <div class="weather-container">
+                <h2>Weather & Currency - Your Journey with Confidence! </h2>
+        
+                <script>
+                    (function(d, s, id) {
+                        if (d.getElementById(id)) {
+                            if (window.__TOMORROW__) {
+                                window.__TOMORROW__.renderWidget();
+                            }
+                            return;
+                        }
+                        const fjs = d.getElementsByTagName(s)[0];
+                        const js = d.createElement(s);
+                        js.id = id;
+                        js.src = "https://www.tomorrow.io/v1/widget/sdk/sdk.bundle.min.js";
+                        fjs.parentNode.insertBefore(js, fjs);
+                    })(document, 'script', 'tomorrow-sdk');
+                </script>
+        
+                <div class="tomorrow"
+                    data-location-id="031817,031862,031832,031802,031841,031811"
+                    data-language="EN"
+                    data-unit-system="METRIC"
+                    data-skin="dark"
+                    data-widget-type="current6"
+                    style="padding-bottom:22px; position:relative;">
+                    <a href="https://www.tomorrow.io/weather-api/"
+                        rel="nofollow noopener noreferrer"
+                        target="_blank"
+                        style="position: absolute; bottom: 0; transform: translateX(-50%); left: 50%;">
+                       
+                    </a>
+                </div>
+            </div>
+        
+            <!-- Currency Exchange Section -->
+            <div>
+              <iframe 
+                    title="fx"
+                    src="https://wise.com/gb/currency-converter/fx-widget/converter?sourceCurrency=EUR&targetCurrency=EGP&amount=1"
+                    height="420"
+                    width="500"
+                    frameBorder="0"
+                    allowtransparency="true">
+                </iframe>
+            </div>
+        </div>
+        
+   <!-- Video Section -->
+<div class="video-container">
+    <h5><i class="fas fa-video"></i> Where warm hospitality meets vibrant culture – Experience the Colors of Egypt</h5>
+    <div class="video-grid">
+        <video class="video-item" oncontextmenu="return false;" disablePictureInPicture controlsList="nodownload" controls>
+            <source src="{{ url_for('static', filename='nile-valley-thisisegypt.mp4') }}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <video class="video-item" oncontextmenu="return false;" disablePictureInPicture controlsList="nodownload" controls>
+            <source src="{{ url_for('static', filename='luxor.mp4') }}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <video class="video-item" oncontextmenu="return false;" disablePictureInPicture controlsList="nodownload" controls>
+            <source src="{{ url_for('static', filename='Experience Egypt2.mp4') }}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        
+    </div>
+</div>
+
+<!-- CSS to style the video grid -->
+<style>
+    .video-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 15px;
+    }
+</style>
+
+
+    <script>
+        // Slideshow Background
+        let slides = document.querySelectorAll('.slideshow-container img');
+        let currentSlide = 0;
+
+        function showSlides() {
+            slides.forEach((slide, index) => {
+                slide.classList.remove('active');
+            });
+
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+
+        setInterval(showSlides, 5000); // Change image every 5 seconds
+
+        // Sticky Header - Show on Scroll Up, Hide on Scroll Down
+        let lastScrollTop = 0;
+        window.addEventListener("scroll", function() {
+            let navbar = document.getElementById("navbar");
+            let scrollTop = window.scrollY || document.documentElement.scrollTop;
+            
+            if (scrollTop > lastScrollTop) {
+                navbar.classList.add("hide"); 
+            } else {
+                navbar.classList.remove("hide"); 
+            }
+            lastScrollTop = scrollTop;
+        });
+    </script>
+
+<!-- Stunning Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <!-- Logo & Description -->
+            <div class="col-md-4">
+                <h4 class="footer-logo">EgyptTrips <i class="fas fa-globe-africa"></i></h4>
+                <p>Discover the beauty of Egypt with expertly curated trips and excursions.</p>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="col-md-4">
+                <h5>Quick Links</h5>
+                <ul class="footer-links">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/about">About Us</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                    <li><a href="/quote">Request a Quote</a></li>
+                </ul>
+            </div>
+
+           <!-- Social Media -->
+<div class="col-md-4">
+    <h5>Follow Us</h5>
+    <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+        <!-- TripAdvisor Icon -->
+        <a href="https://www.tripadvisor.co.uk/Profile/179egyptr?tab=trips">
+            <i class="fab fa-tripadvisor"></i>
+        </a>
+    </div>
+    <!-- TripAdvisor Image -->
+    <div class="tripadvisor-badge">
+        <img src="{{ url_for('static', filename='tripadvisor.jpg') }}" alt="Facebook" 
+                 alt="TripAdvisor" width="250" hights = "250">
+        </a>
+    </div>
+</div>
+
+        <!-- Copyright -->
+        <div class="footer-bottom">
+            <p>&copy; 2025 EgyptTrips. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+
+
+</body>
+</html>

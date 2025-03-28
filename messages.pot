@@ -1,0 +1,220 @@
+# Translations template for PROJECT.
+# Copyright (C) 2025 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2025-03-23 00:26+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+
+#: templates/about.html:322 templates/booking.html:347
+#: templates/booking.html:369 templates/contact.html:361
+#: templates/request_quote.html:313 templates/result.html:321
+#: templates/result.html:465 templates/search.html:894
+#: templates/trip_details.html:762
+msgid "Home"
+msgstr ""
+
+#: templates/about.html:323 templates/booking.html:348
+#: templates/booking.html:370 templates/contact.html:362
+#: templates/request_quote.html:314 templates/result.html:322
+#: templates/search.html:895 templates/trip_details.html:763
+msgid "About"
+msgstr ""
+
+#: templates/about.html:324 templates/booking.html:349
+#: templates/booking.html:371 templates/contact.html:363
+#: templates/request_quote.html:315 templates/result.html:323
+#: templates/result.html:467 templates/search.html:896
+#: templates/trip_details.html:764
+msgid "Contact"
+msgstr ""
+
+#: templates/about.html:325 templates/booking.html:350
+#: templates/booking.html:372 templates/contact.html:364
+#: templates/request_quote.html:316 templates/result.html:324
+#: templates/result.html:468 templates/search.html:897
+#: templates/trip_details.html:765
+msgid "Request a Quote"
+msgstr ""
+
+#: templates/result.html:370
+msgid "Discover Breathtaking Trips To"
+msgstr ""
+
+#: templates/result.html:392
+msgid "Location:"
+msgstr ""
+
+#: templates/result.html:393 templates/trip_details.html:824
+msgid "Duration:"
+msgstr ""
+
+#: templates/result.html:395 templates/trip_details.html:800
+msgid "Rating:"
+msgstr ""
+
+#: templates/result.html:429
+msgid "Party Total Price:"
+msgstr ""
+
+#: templates/result.html:442
+msgid ""
+"No trips found for this destination. Please try another date or "
+"destination."
+msgstr ""
+
+#: templates/result.html:447
+msgid "Back to Search"
+msgstr ""
+
+#: templates/result.html:463
+msgid "Quick Links"
+msgstr ""
+
+#: templates/result.html:466
+msgid "About Us"
+msgstr ""
+
+#: templates/search.html:974
+msgid "Find Your Perfect Excursion in Egypt"
+msgstr ""
+
+#: templates/search.html:975
+msgid "Explore breathtaking locations and book your dream adventure."
+msgstr ""
+
+#: templates/search.html:979
+msgid "Destination"
+msgstr ""
+
+#: templates/search.html:981
+msgid "Select Destination"
+msgstr ""
+
+#: templates/search.html:988
+msgid "Preferred Date"
+msgstr ""
+
+#: templates/search.html:992
+msgid "Alternative Day"
+msgstr ""
+
+#: templates/search.html:996
+msgid "Adults"
+msgstr ""
+
+#: templates/search.html:1000
+msgid "Children"
+msgstr ""
+
+#: templates/search.html:1005
+msgid "Search Trips"
+msgstr ""
+
+#: templates/search.html:1013
+msgid "Explore Top Destinations with Our Handpicked Popular Trips!"
+msgstr ""
+
+#: templates/search.html:1047
+msgid "p.p"
+msgstr ""
+
+#: templates/search.html:1048
+msgid "View Details"
+msgstr ""
+
+#: templates/trip_details.html:785
+msgid "Trip Video"
+msgstr ""
+
+#: templates/trip_details.html:821
+msgid "Meeting Point:"
+msgstr ""
+
+#: templates/trip_details.html:822
+msgid "Departure Time:"
+msgstr ""
+
+#: templates/trip_details.html:823
+msgid "Return Time:"
+msgstr ""
+
+#: templates/trip_details.html:825
+msgid "Reviews Count:"
+msgstr ""
+
+#: templates/trip_details.html:826
+msgid "Available Spots:"
+msgstr ""
+
+#: templates/trip_details.html:827
+msgid "Tour Guide:"
+msgstr ""
+
+#: templates/trip_details.html:828
+msgid "Group Size:"
+msgstr ""
+
+#: templates/trip_details.html:837
+msgid "Contact Email:"
+msgstr ""
+
+#: templates/trip_details.html:838
+msgid "Contact Phone:"
+msgstr ""
+
+#: templates/trip_details.html:839
+msgid "What to Bring:"
+msgstr ""
+
+#: templates/trip_details.html:840
+msgid "Trip Difficulty:"
+msgstr ""
+
+#: templates/trip_details.html:842
+msgid "Languages Available:"
+msgstr ""
+
+#: templates/trip_details.html:843
+msgid "Age Restrictions:"
+msgstr ""
+
+#: templates/trip_details.html:844
+msgid "Accessibility:"
+msgstr ""
+
+#: templates/trip_details.html:845
+msgid "Trip Category:"
+msgstr ""
+
+#: templates/trip_details.html:846
+msgid "Transportation Type:"
+msgstr ""
+
+#: templates/trip_details.html:847
+msgid "Meals Included:"
+msgstr ""
+
+#: templates/trip_details.html:848
+msgid "Cancellation Policy:"
+msgstr ""
+
+#: templates/trip_details.html:855
+msgid "Explore Your Trip Memories"
+msgstr ""
+
+#: templates/trip_details.html:856
+msgid "Capture the essence of your journey with stunning visuals."
+msgstr ""
+

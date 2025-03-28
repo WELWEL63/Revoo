@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Contacts</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            font-family: 'Arial', sans-serif;
+            padding: 20px;
+        }
+        .container {
+            margin-top: 30px;
+            max-width: 1100px;
+            text-align: center;
+        }
+        .contact-card {
+            background: white;
+            color: black;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            margin-bottom: 25px;
+            text-align: left;
+        }
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        .btn {
+            margin: 5px;
+            font-size: 14px;
+            transition: all 0.3s ease-in-out;
+        }
+        .btn:hover {
+            transform: scale(1.1);
+        }
+        .icon {
+            margin-right: 5px;
+        }
+        .search-box {
+            margin-bottom: 15px;
+        }
+        input[type="text"] {
+            padding: 8px;
+            width: 80%;
+            border-radius: 5px;
+            border: none;
+            outline: none;
+        }
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding-top: 60px;
+        }
+        .modal-content {
+            background-color: rgb(232, 236, 241);
+            color: #0a1c6d;
+            margin: auto;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            width: 50%;
+            text-align: left;
+            position: relative;
+        }
+        .close {
+            color: #0a1c6d;
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close:hover {
+            color: black;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                <div class="container d-flex justify-content-between align-items-center">
+                    <a href="/" class="logo">EgyptTrips Admin<i class="fas fa-globe-africa"></i></a>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav"> 
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="/">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/manage/trips">Manage Trips</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/manage/reviews">Reviews</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/manage/quotes">Quotes</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/manage/contacts">Contacts</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/manage/bookings">Manage Bookings</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/report/bookings">Booking Reports</a></li>
+                </ul>
+            </div>
+            
+        </div>
+    </header>
+    <div class="container">
+        <h1 class="text-center"><i class="fas fa-address-book"></i> Manage Contacts</h1>
+
+        <!-- Search Box -->
+        <div class="search-box">
+            <input type="text" id="searchInput" class="form-control" placeholder="Search by Name, Phone, or Email" onkeyup="searchContacts()">
+        </div>
+    </div>
+
+    
+    <a href="/" class="btn btn-light"><i class="fas fa-arrow-left icon"></i> Back to Dashboard</a>
+   </div>
+        <div class="row">
+            {% for contact in contacts %}
+            <div class="col-md-6 contact-item">
+                <div class="contact-card">
+                    <p><strong>Name:</strong> {{ contact['Name'] }}</p>
+                    <p><i class="fas fa-phone icon"></i> <strong>Phone:</strong> {{ contact['Phone'] }}</p>
+                    <p><i class="fas fa-envelope icon"></i> <strong>Email:</strong> {{ contact['Email'] }}</p>
+                    <p><i class="fas fa-comment icon"></i> <strong>Message:</strong> {{ contact['Message'] }}</p>
+
+                    <button class="btn btn-outline-primary" onclick="openEditModal({{ loop.index0 }}, '{{ contact['Name'] }}', '{{ contact['Phone'] }}', '{{ contact['Email'] }}', '{{ contact['Message'] }}')">
+                        <i class="fas fa-edit icon"></i> Edit
+                    </button>
+
+                    <form action="/delete/contact/{{ loop.index0 }}" method="POST" style="display:inline;">
+                        <button type="submit" class="btn btn-outline-danger">
+                            <i class="fas fa-trash icon"></i> Delete
+                        </button>
+                    </form>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        
+    </div>
+
+    <!-- Edit Contact Modal -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeEditModal()">&times;</span>
+            <h2>Edit Contact</h2>
+            <form id="editForm" method="POST">
+                <input type="hidden" id="editIndex" name="index">
+                <label for="editName">Name:</label>
+                <input type="text" id="editName" name="name" class="form-control" required>
+
+                <label for="editPhone">Phone:</label>
+                <input type="text" id="editPhone" name="phone" class="form-control" required>
+
+                <label for="editEmail">Email:</label>
+                <input type="email" id="editEmail" name="email" class="form-control" required>
+
+                <label for="editMessage">Message:</label>
+                <textarea id="editMessage" name="message" class="form-control" required></textarea>
+
+                <button type="submit" class="btn btn-primary mt-3">Save Changes</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function openEditModal(index, name, phone, email, message) {
+            document.getElementById("editIndex").value = index;
+            document.getElementById("editName").value = name;
+            document.getElementById("editPhone").value = phone;
+            document.getElementById("editEmail").value = email;
+            document.getElementById("editMessage").value = message;
+            document.getElementById("editForm").action = "/edit/contact/" + index;
+            document.getElementById("editModal").style.display = "block";
+        }
+
+        function closeEditModal() {
+            document.getElementById("editModal").style.display = "none";
+        }
+
+        function searchContacts() {
+            var input = document.getElementById("searchInput").value.toLowerCase();
+            var items = document.getElementsByClassName("contact-item");
+
+            for (var i = 0; i < items.length; i++) {
+                var text = items[i].innerText.toLowerCase();
+                items[i].style.display = text.includes(input) ? "" : "none";
+            }
+        }
+
+
+        
+    </script>
+<!-- Add Contact Form -->
+<div class="container mt-4">
+    <h3><i class="fas fa-user-plus"></i> Add New Contact</h3>
+    <form action="/add/contact" method="POST">
+        <div class="mb-3">
+            <label for="name" class="form-label">Name:</label>
+            <input type="text" class="form-control" id="name" name="name" required>
+        </div>
+        <div class="mb-3">
+            <label for="phone" class="form-label">Phone:</label>
+            <input type="text" class="form-control" id="phone" name="phone" required>
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email:</label>
+            <input type="email" class="form-control" id="email" name="email" required>
+        </div>
+        <div class="mb-3">
+            <label for="message" class="form-label">Message:</label>
+            <textarea class="form-control" id="message" name="message" rows="3" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-success"><i class="fas fa-save"></i> Save Contact</button>
+    </form>
+</div>
+
+    
+ </div>
+ <a href="/" class="btn btn-light"><i class="fas fa-arrow-left icon"></i> Back to Dashboard</a>
+</div>
+</body>
+</html>

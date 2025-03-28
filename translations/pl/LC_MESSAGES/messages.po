@@ -1,0 +1,92 @@
+# Polish translations for PROJECT.
+# Copyright (C) 2019 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: pl\n"
+msgid "Welcome"
+msgstr "Witaj"
+
+msgid "Home"
+msgstr "Strona główna"
+
+msgid "Search"
+msgstr "Szukaj"
+
+msgid "Destination"
+msgstr "Cel podróży"
+
+msgid "Select destination"
+msgstr "Wybierz cel podróży"
+
+msgid "Preferred Date"
+msgstr "Preferowana data"
+
+msgid "Alternative Date"
+msgstr "Alternatywna data"
+
+msgid "Adults"
+msgstr "Dorośli"
+
+msgid "Children"
+msgstr "Dzieci"
+
+msgid "Total Price"
+msgstr "Całkowita cena"
+
+msgid "Rating"
+msgstr "Ocena"
+
+msgid "Booking Information"
+msgstr "Informacje o rezerwacji"
+
+msgid "Book Now"
+msgstr "Zarezerwuj teraz"
+
+msgid "Contact"
+msgstr "Kontakt"
+
+msgid "Request a Quote"
+msgstr "Poproś o ofertę"
+
+msgid "About"
+msgstr "O nas"
+
+msgid "Find Your Perfect Excursion in Egypt"
+msgstr "Znajdź swoją idealną wycieczkę w Egipcie"
+
+msgid "Explore breathtaking locations and book your dream adventure."
+msgstr "Odkrywaj zapierające dech w piersiach miejsca i zarezerwuj swoją wymarzoną przygodę."
+
+msgid "Explore Top Destinations with Our Handpicked Popular Trips!"
+msgstr "Odkryj najlepsze miejsca z naszymi starannie wybranymi popularnymi wycieczkami!"
+
+msgid "View Details"
+msgstr "Zobacz szczegóły"
+
+msgid "100% Protected"
+msgstr "100% Chronione"
+
+msgid "We are a member of Travel Trust of Egypt, your money is 100% protected."
+msgstr "Jesteśmy członkiem Travel Trust of Egypt, twoje pieniądze są w 100% chronione."
+
+msgid "100+ Trips & Holiday Activities"
+msgstr "Ponad 100 wycieczek i aktywności wakacyjnych"
+
+msgid "Enjoy the perfect blend of nature, beach relaxation, and outdoor adventures for your ideal holiday experience."
+msgstr "Ciesz się idealnym połączeniem natury, relaksu na plaży i przygód na świeżym powietrzu w ramach idealnych wakacji."
+
+msgid "1000s+ Happy Customers"
+msgstr "Tysiące zadowolonych klientów"
+
+msgid "Our customers can't stop sharing their amazing experiences with us. Join the growing community of satisfied travelers!"
+msgstr "Nasi klienci nie przestają dzielić się swoimi niesamowitymi doświadczeniami z nami. Dołącz do rosnącej społeczności zadowolonych podróżnych!"
+
+msgid "60+ Experts & Trusted Suppliers"
+msgstr "Ponad 60 ekspertów i zaufanych dostawców"
+
+msgid "Partnering with the best for a seamless travel experience."
+msgstr "Współpraca z najlepszymi, aby zapewnić bezproblemowe doświadczenie podróży."

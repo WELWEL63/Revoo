@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Reviews</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            font-family: 'Arial', sans-serif;
+            padding: 20px;
+        }
+        .container {
+            margin-top: 30px;
+            max-width: 1100px;
+            text-align: center;
+        }
+        .review-card {
+            background: white;
+            color: black;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        .review-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        .btn {
+            margin: 5px;
+            font-size: 14px;
+            transition: all 0.3s ease-in-out;
+        }
+        .btn:hover {
+            transform: scale(1.1);
+        }
+        .icon {
+            margin-right: 5px;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding-top: 60px;
+        }
+        .modal-content {
+            background-color: rgb(232, 236, 241);
+            color: #0a1c6d;
+            margin: auto;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            width: 60%;
+            text-align: left;
+            position: relative;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        .close {
+            color: #0a1c6d;
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }
+        .close:hover {
+            color: black;
+            transform: scale(1.1);
+        }
+        /* Search Box */
+        .search-box {
+            margin-bottom: 15px;
+        }
+        input[type="text"] {
+            padding: 8px;
+            width: 80%;
+            border-radius: 5px;
+            border: none;
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                <img src="{{ url_for('static', filename='africa_logo.png') }}" alt="Africa Logo" height="40">
+                <span class="ms-2">EgyptTrip Admin</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav"> 
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="/">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/manage/trips">Manage Trips</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/manage/reviews">Reviews</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/manage/quotes">Quotes</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/manage/contacts">Contacts</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/manage/bookings">Manage Bookings</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/report/bookings">Booking Reports</a></li>
+                </ul>
+            </div>
+            
+        </div>
+    </header>
+
+    <div class="container">
+        <h1 class="text-center"><i class="fas fa-comments"></i> Manage Reviews</h1>
+
+    </div>
+    <a href="/" class="btn btn-light"><i class="fas fa-arrow-left icon"></i> Back to Dashboard</a>
+</div>
+
+        <!-- Search Box -->
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Search by Review ID, Customer Name, Rating, or Trip ID" onkeyup="searchReviews()">
+        </div>
+
+        <div class="row">
+            {% for review in all_reviews %}
+            <div class="col-md-6 review-item">
+                <div class="review-card">
+                    <p><strong>Trip ID:</strong> {{ review['trip_id'] }}</p>
+                    <p><i class="fas fa-user icon"></i> <strong>Name:</strong> {{ review['name'] }}</p>
+                    <p><i class="fas fa-star icon"></i> <strong>Rating:</strong> {{ review['rating'] }}</p>
+                    <p><i class="fas fa-comment icon"></i> <strong>Comment:</strong> {{ review['comment'] }}</p>
+                    <p><i class="fas fa-envelope icon"></i> <strong>Email:</strong> {{ review['email'] }}</p>
+                    <button class="btn btn-outline-info" onclick="openModal({{ loop.index0 }})"><i class="fas fa-eye icon"></i> View</button>
+                    <form action="/delete/review/{{ loop.index0 }}" method="POST" style="display:inline;">
+                        <button type="submit" class="btn btn-outline-danger"><i class="fas fa-trash icon"></i> Delete</button>
+                    </form>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="reviewModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div class="modal-header">
+                <i class="fa-solid fa-info-circle"></i> Review Details
+            </div>
+            <div id="reviewDetails" class="trip-info"></div>
+        </div>
+    </div>
+
+    <script>
+        var allReviews = {{ all_reviews | tojson }};
+
+        function openModal(index) {
+            if (!allReviews[index]) {
+                alert("Review details not found.");
+                return;
+            }
+
+            var review = allReviews[index];
+
+            var details = "";
+            for (var key in review) {
+                details += `<p><i class="fa-solid fa-info-circle"></i> <strong>${key.replace("_", " ").toUpperCase()}:</strong> ${review[key]}</p>`;
+            }
+            
+            document.getElementById("reviewDetails").innerHTML = details;
+            document.getElementById("reviewModal").style.display = "block";
+        }
+
+        function closeModal() {
+            document.getElementById("reviewModal").style.display = "none";
+        }
+
+        function searchReviews() {
+            var input = document.getElementById("searchInput").value.toLowerCase();
+            var items = document.getElementsByClassName("review-item");
+
+            for (var i = 0; i < items.length; i++) {
+                var text = items[i].innerText.toLowerCase();
+                items[i].style.display = text.includes(input) ? "" : "none";
+            }
+        }
+    </script>
+ </div>
+ <a href="/" class="btn btn-light"><i class="fas fa-arrow-left icon"></i> Back to Dashboard</a>
+</div>
+</body>
+</html>

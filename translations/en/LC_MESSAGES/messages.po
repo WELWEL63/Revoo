@@ -1,0 +1,41 @@
+# Translation file for en
+
+msgid "Welcome"
+msgstr "Welcome"
+
+msgid "Home"
+msgstr "Home"
+
+msgid "Search"
+msgstr "Search"
+
+msgid "Destination"
+msgstr "Destination"
+
+msgid "Select destination"
+msgstr "Select destination"
+
+msgid "Date"
+msgstr "Date"
+
+msgid "Adults"
+msgstr "Adults"
+
+msgid "Children"
+msgstr "Children"
+
+msgid "Total Price"
+msgstr "Total Price"
+
+msgid "Rating"
+msgstr "Rating"
+
+msgid "Featured Trips"
+msgstr "Featured Trips"
+
+msgid "Booking Information"
+msgstr "Booking Information"
+
+msgid "Book Now"
+msgstr "Book Now"
+

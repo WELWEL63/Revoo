@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Quotes</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            font-family: 'Arial', sans-serif;
+            padding: 20px;
+        }
+        .container {
+            margin-top: 30px;
+            max-width: 1100px;
+            text-align: center;
+        }
+        .quote-card {
+            background: white;
+            color: black;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            margin-bottom: 25px;
+            text-align: left;
+        }
+        .quote-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        .btn {
+            margin: 5px;
+            font-size: 14px;
+            transition: all 0.3s ease-in-out;
+        }
+        .btn:hover {
+            transform: scale(1.1);
+        }
+        .icon {
+            margin-right: 5px;
+        }
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding-top: 60px;
+        }
+        .modal-content {
+            background-color: rgb(232, 236, 241);
+            color: #0a1c6d;
+            margin: auto;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            width: 50%;
+            text-align: left;
+            position: relative;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        .close {
+            color: #0a1c6d;
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }
+        .close:hover {
+            color: black;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                <img src="{{ url_for('static', filename='africa_logo.png') }}" alt="Africa Logo" height="40">
+                <span class="ms-2">EgyptTrip Admin</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav"> 
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="/">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/manage/trips">Manage Trips</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/manage/reviews">Reviews</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/manage/quotes">Quotes</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/manage/contacts">Contacts</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/manage/bookings">Manage Bookings</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/report/bookings">Booking Reports</a></li>
+                </ul>
+            </div>
+            <title>Manage Quotes</title>
+    <style>
+        .alert {
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .alert.success {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .alert.error {
+            background-color: #f44336;
+            color: white;
+        }
+        .alert.info {
+            background-color: #2196F3;
+            color: white;
+        }
+        .alert.warning {
+            background-color: #ff9800;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Manage Quotes</h1>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div>
+                {% for category, message in messages %}
+                    <div class="alert {{ category }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <!-- Your existing code to display quotes -->
+
+</body>
+
+        </div>
+    </header>
+    <div class="container">
+    <h1 class="text-center"><i class="fas fa-file-alt"></i> Manage Quotes</h1>
+</div>
+<a href="/" class="btn btn-light"><i class="fas fa-arrow-left icon"></i> Back to Dashboard</a>
+</div>
+
+<!-- Search Box -->
+<div class="search-box mb-3">
+    <input type="text" id="searchInput" class="form-control" placeholder="Search by Name, Trip, or Phone" onkeyup="searchQuotes()">
+</div>
+
+<div class="row">
+    {% for quote in quotes %}
+    <div class="col-md-6 quote-item">
+        <div class="quote-card">
+            <p><strong>Name:</strong> {{ quote['name'] }}</p>
+            <p><strong>Email:</strong> {{ quote['email'] }}</p>
+            <p><strong>Phone:</strong> {{ quote['phone'] }}</p>
+            <p><strong>Trip:</strong> {{ quote['trip'] }}</p>
+            <p><strong>Dates:</strong> {{ quote['dates'] }}</p>
+            <p><strong>Date:</strong> {{ quote['date'] }}</p>
+            <p><strong>Adults:</strong> {{ quote['adults'] }} | <strong>Children:</strong> {{ quote['children'] }}</p>
+            <p><strong>Stay:</strong> {{ quote['stay'] }}</p>
+            <p><strong>Special Requests:</strong> {{ quote['special_requests'] }}</p>
+            <p><strong>Details:</strong> {{ quote['details'] }}</p>
+            <button class="btn btn-outline-info" onclick="openModal({{ loop.index0 }})">
+                <i class="fas fa-eye icon"></i> View
+            </button>
+             
+            <!-- View Button -->
+            <button class="btn btn-outline-info" onclick="openModal({{ loop.index0 }})">
+                <i class="fas fa-eye icon"></i> View
+            </button>
+
+            <!-- Edit Button -->
+            <a href="/edit/quote/{{ loop.index0 }}" class="btn btn-outline-primary">
+                <i class="fas fa-edit icon"></i> Edit
+            </a>
+
+            <!-- Delete Form -->
+            <form action="/delete/quote/{{ loop.index0 }}" method="POST" style="display:inline;">
+                <button type="submit" class="btn btn-outline-danger"><i class="fas fa-trash icon"></i> Delete</button>
+            </form>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+</div>
+
+<!-- View Quote Modal -->
+<div id="quoteModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <div class="modal-header">
+            <i class="fa-solid fa-info-circle"></i> Quote Details
+        </div>
+        <div id="quoteDetails"></div>
+    </div>
+</div>
+
+<script>
+    var quotes = {{ quotes | tojson }};
+
+    function openModal(index) {
+        var quote = quotes[index];
+
+        if (!quote) {
+            alert("Quote details not found.");
+            return;
+        }
+
+        var details = `
+            <p><i class="fas fa-user icon"></i> <strong>Name:</strong> ${quote['name']}</p>
+            <p><i class="fas fa-envelope icon"></i> <strong>Email:</strong> ${quote['email']}</p>
+            <p><i class="fas fa-phone icon"></i> <strong>Phone:</strong> ${quote['phone']}</p>
+            <p><i class="fas fa-map-marker-alt icon"></i> <strong>Trip:</strong> ${quote['trip']}</p>
+            <p><i class="fas fa-calendar-alt icon"></i> <strong>Dates:</strong> ${quote['dates']}</p>
+            <p><i class="fas fa-calendar-check icon"></i> <strong>Date:</strong> ${quote['date']}</p>
+            <p><i class="fas fa-users icon"></i> <strong>Adults:</strong> ${quote['adults']} | <strong>Children:</strong> ${quote['children']}</p>
+            <p><i class="fas fa-bed icon"></i> <strong>Stay:</strong> ${quote['stay']}</p>
+            <p><i class="fas fa-comment icon"></i> <strong>Special Requests:</strong> ${quote['special_requests']}</p>
+            <p><i class="fas fa-info-circle icon"></i> <strong>Details:</strong> ${quote['details']}</p>
+        `;
+
+        document.getElementById("quoteDetails").innerHTML = details;
+        document.getElementById("quoteModal").style.display = "block";
+    }
+
+    function closeModal() {
+        document.getElementById("quoteModal").style.display = "none";
+    }
+
+    // Close the modal if the user clicks anywhere outside the modal content
+    window.onclick = function(event) {
+        var modal = document.getElementById("quoteModal");
+        if (event.target == modal) {
+            closeModal();
+        }
+    }
+</script>
+
+</div>
+<a href="/" class="btn btn-light"><i class="fas fa-arrow-left icon"></i> Back to Dashboard</a>
+</div>
+
+</body>
+</html>

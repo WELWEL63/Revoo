@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
+    <!-- Add this to the <head> section for Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="header.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Information</title>
+
+    <style>
+    /* Sticky Header */
+.sticky-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #1f3d64;
+    padding: 15px 20px;
+    box-shadow: 0px 4px 10px rgba(139, 3, 133, 0.2);
+    transition: top 0.4s ease-in-out;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0; /* Ensure there's no extra margin */
+    box-sizing: border-box; /* Prevents padding from affecting layout */
+}
+
+/* When the header is hidden */
+.sticky-header.hide {
+    top: -80px;
+}
+
+/* Logo */
+.logo {
+    color: #f4a261;
+    font-size: 35px;
+    font-weight: bold;
+    text-decoration: none;
+    flex: 0 1 auto; /* Ensures the logo stays on the left */
+}
+
+/* Navigation Links (Center) */
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+    flex: 1; /* This ensures the links are centered */
+    justify-content: center; /* Centers the links */
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 8px 12px;
+    transition: 0.3s;
+    border-radius: 5px;
+}
+
+.nav-links a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #f4a261;
+    transform: scale(1.1);
+}
+
+/* Social Icons (Right) */
+.sticky-header .social-icons {
+    display: flex;
+    gap: 25px;
+    flex: 0 1 auto; /* Ensures the social icons stay on the right */
+    justify-content: flex-end;
+}
+
+.sticky-header .social-icons a {
+    color: #faf4f4;
+    text-decoration: none;
+    font-size: 25px;
+    transition: color 0.3s;
+}
+
+.sticky-header .social-icons a:hover {
+    color: #007bff;
+}
+
+/* Language Selector */
+.language-selector select {
+    background: rgb(255, 255, 255);
+    color: #224663;
+    font-size: 18px;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.language-selector select:hover {
+    background: #ece9e6;
+    color: rgb(25, 42, 73);
+}
+
+/* Adding padding to body to prevent content from being hidden under the sticky header */
+body {
+    padding-top: 80px; /* Adjust this based on your header's height */
+}
+
+
+
+/* WhatsApp Floating Logo */
+/* Container for Floating Social Icons */
+.social-icons-container {
+    position: fixed;
+    bottom: 20px;  /* Adjust to where you want the icons to start vertically */
+    right: 20px;   /* Adjust horizontal position */
+    z-index: 1000;
+}
+
+/* WhatsApp Floating Logo */
+.whatsapp-logo {
+    margin-bottom: 10px; /* Space between icons */
+}
+
+.whatsapp-logo img {
+    width: 60px;  /* Default size for larger screens */
+    height: 60px;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.whatsapp-logo img:hover {
+    transform: scale(1.1);  /* Adds hover effect to the logo */
+}
+
+/* Facebook Floating Logo */
+.facebook-logo {
+    margin-bottom: 10px; /* Space between icons */
+}
+
+.facebook-logo img {
+    width: 60px;  /* Default size for larger screens */
+    height: 60px;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.facebook-logo img:hover {
+    transform: scale(1.1);  /* Adds hover effect to the logo */
+}
+
+/* TripAdvisor Floating Logo */
+.tripadvisor-logo {
+    margin-bottom: 10px; /* Space between icons */
+}
+
+.tripadvisor-logo img {
+    width: 60px;  /* Default size for larger screens */
+    height: 60px;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.tripadvisor-logo img:hover {
+    transform: scale(1.1);  /* Adds hover effect to the logo */
+}
+
+/* Mobile Specific Styling */
+@media (max-width: 768px) {
+    .social-icons-container {
+        right: 10px; /* Adjust horizontal position for smaller screens */
+    }
+
+    .whatsapp-logo img, .facebook-logo img, .tripadvisor-logo img {
+        width: 50px;  /* Adjust size for mobile */
+        height: 50px;
+    }
+}
+
+/* Extra Small Mobile Styling (Optional) */
+@media (max-width: 480px) {
+    .social-icons-container {
+        right: 5px; /* Adjust horizontal position for very small screens */
+    }
+
+    .whatsapp-logo img, .facebook-logo img, .tripadvisor-logo img {
+        width: 45px;  /* Smaller size for very small screens */
+        height: 45px;
+    }
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .sticky-header {
+        flex-direction: column;
+        text-align: center;
+        padding: 10px;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: 10px;
+        padding: 0;
+    }
+}
+   
+        .section-title {
+            font-size: 1.5rem;
+            color: #007bff;
+            margin-bottom: 15px;
+        }
+        .info-section, .pricing-section, .booking-form {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .total-price {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #c709bd;
+        }
+        .btn-primary {
+            background-color: #e237bd;
+            border-color: #990cbd;
+            font-size: 1.8rem;
+            font-weight: bold;
+            width: 100%;
+            height: 30%;
+        }
+        .btn-primary:hover {
+            background-color: #28a745;
+            border-color: #28a745;
+            width: 100%;
+            height: 30%;
+        }
+        .nav-tabs .nav-item .nav-link.active {
+            background-color: #007bff;
+            color: white;
+        }
+        .nav-tabs .nav-item .nav-link {
+            color: #007bff;
+        }
+        .form-control {
+            border-radius: 8px;
+            font-size: 25px;
+            color: #520538;
+        }
+        .icon-style {
+            color: #007bff;
+        }
+        .payment-method {
+            font-size: 25px;
+            color: #520538;
+            font-weight: 500;
+            margin-top: 20px;
+            
+        }
+    </style>
+</head>
+<body>
+
+<div class="container mt-5">
+    <title>Pictures can say more than 1000's word</title>
+    <style>
+     
+    
+        /* Ensure the image stays on the same line as other elements */
+.image-container {
+    display: flex;
+    align-items: center; /* Vertically center the image */
+}
+
+
+.trip-logo {
+    width: 550px;    /* Fixed width */
+    height: 350px;   /* Fixed height */
+    object-fit: cover; /* Ensures the image fills the area */
+    border-radius: 8px;
+}
+        .info-section, .pricing-section, .booking-form {
+            background-color: #f9f9f9;
+            font-size: 1.3rem;
+            color: #0c4475;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            align-items: center; /* Vertically center the image */
+}
+             .total-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #c709bd;
+        }
+        .btn-primary {
+            background-color: #1f3d64;
+            border-color: #990cbd;
+            font-size: 1.8rem;
+            font-weight: bold;
+            width: 100%;
+            height: 30%;
+        }
+        .btn-primary:hover {
+            background-color: #970573;
+            border-color: #0d416b;
+            width: 100%;
+            height: 30%;
+        }
+        .nav-tabs .nav-item .nav-link.active {
+            background-color: #007bff;
+            color: white;
+        }
+        .nav-tabs .nav-item .nav-link {
+            color: #007bff;
+        }
+        .form-control {
+            border-radius: 8px;
+        }
+        .icon-style {
+            color: #99049e;
+        }
+        .payment-method {
+            margin-top: 20px;
+        }
+         /* Footer */
+        .footer {
+            background: #1d3557;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            margin-top: 40px;
+        }
+        .footer .social-icons-footer {
+            margin: 10px 0;
+        }
+        .footer .social-icons-footer a {
+            color: white;
+            font-size: 20px;
+            margin: 0 10px;
+            transition: 0.3s;
+        }
+        .footer .social-icons-footer a:hover {
+           color: #f4a261;
+            transform: scale(1.1);
+        }
+    </style>
+
+        
+    </style> 
+
+    
+</head>
+<header class="sticky-header" id="navbar">
+    <div class="container d-flex justify-content-between align-items-center">
+        <a href="/" class="logo">EgyptTrips <i class="fas fa-globe-africa"></i></a>
+        <ul class="nav-links">
+            <li><a href="/">{{ _('Home') }}</a></li>
+            <li><a href="/about">{{ _('About') }}</a></li>
+            <li><a href="/contact">{{ _('Contact') }}</a></li>
+            <li><a href="/quote">{{ _('Request a Quote') }}</a></li>
+        </ul>
+        <div class="language-selector">
+            <select onchange="window.location.href=this.value">
+                <option value="{{ url_for('set_language', lang='en') }}">🇬🇧 English</option>
+                <option value="{{ url_for('set_language', lang='ar') }}">🇸🇦 Arabic</option>
+                <option value="{{ url_for('set_language', lang='fr') }}">🇫🇷 French</option>
+                <option value="{{ url_for('set_language', lang='de') }}">🇩🇪 German</option>
+                <option value="{{ url_for('set_language', lang='es') }}">🇪🇸 Spanish</option>
+            </select>
+        </div>
+    </div>
+</header>
+
+<body>
+    <header class="sticky-header" id="navbar">
+        <div class="container d-flex justify-content-between align-items-center">
+            <a href="/" class="logo">EgyptTrips <i class="fas fa-globe-africa"></i></a>
+            <ul class="nav-links">
+                <li><a href="/">{{ _('Home') }}</a></li>
+                <li><a href="/about">{{ _('About') }}</a></li>
+                <li><a href="/contact">{{ _('Contact') }}</a></li>
+                <li><a href="/quote">{{ _('Request a Quote') }}</a></li>
+            </ul>
+             <!-- Social Media -->
+             <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+    </header>
+
+    <div class="social-icons-container">
+        <!-- WhatsApp Logo --> 
+        <div class="whatsapp-logo">
+            <a href="https://wa.me/+447591464519">
+                <img src="{{ url_for('static', filename='whatsup.jpg') }}" alt="WhatsApp" />
+            </a>
+        </div>
+    
+        <!-- Facebook Logo -->
+        <div class="facebook-logo">
+            <a href="https://www.facebook.com/profile.php?id=61564874641704" target="_blank">
+                <img src="{{ url_for('static', filename='facebook.jpg') }}" alt="Facebook" />
+            </a>
+        </div>
+    
+        <!-- TripAdvisor Logo -->
+        <div class="tripadvisor-logo">
+            <a href="https://www.tripadvisor.co.uk/Profile/179egyptr?tab=reviews" target="_blank">
+                <img src="{{ url_for('static', filename='tripadvos.jpg') }}" alt="TripAdvisor" />
+            </a>
+        </div>
+    </div>
+    
+                   
+    
+<!-- Trip Detilas -->
+    <h1 class="text-center mb-4">Book Your Trip With Confidence</h1>
+   
+        <h1 class="text-center">{{ trip['Trip Name'] }}</h1>
+        
+        <p class="text-center"><strong>TRIPID:</strong> {{ trip['Trip ID'] }} <n>
+            <strong>Location:</strong> {{ trip['Destination'] }}</p>
+                        
+
+             <!-- Trip Information Section -->
+    <form method="POST" action="{{ url_for('booking_confirmation', trip_id=trip_id) }}">
+        <input type="hidden" name="trip_id" value="{{ trip_id }}">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="info-section">
+                    <!-- Dynamic image based on Trip ID -->
+                  <img src="{{ url_for('static', filename='images/' + trip['Trip ID'] + '.jpg') }}" class="trip-logo img-fluid" alt="Trip Logo">
+
+                    <h5 class="section-title"><i class="fas fa-tags"></i> Trip Details</h5>
+                    <p><i class="fas fa-book-open icon-style"></i><strong>Description:</strong> {{ trip.get('Description', 'N/A') }}</p>
+                    <p><strong>Selected Trip Date:</strong> {{ date }}</p>
+                    <p><strong>Alternative Date:</strong> {{ alt_day }}</p>
+
+                    <p><i class="fas fa-map-marker-alt icon-style"></i><strong>Meeting Point:</strong> {{ trip.get('Meeting Point', 'N/A') }}</p>
+                    <p><i class="fas fa-clock icon-style"></i><strong>Departure Time:</strong> {{ trip.get('Departure Time', 'N/A') }}</p>
+                    <p><i class="fas fa-clock icon-style"></i><strong>Return Time:</strong> {{ trip.get('Return Time', 'N/A') }}</p>
+                    <p><i class="fas fa-star icon-style"></i><strong>Rating:</strong> {{ trip.get('Rating', 'N/A') }}</p>
+                    <p><i class="fas fa-comments icon-style"></i><strong>Reviews Count:</strong> {{ trip.get('Reviews Count', 'N/A') }}</p>
+                    <p><i class="fas fa-language icon-style"></i><strong>Trip Category:</strong> {{ trip.get('Trip Category', 'N/A') }}</p>
+                    <p><i class="fas fa-calendar-alt icon-style"></i><strong>Available Spots:</strong> {{ trip.get('Available Spots', 'N/A') }}</p>
+                    <p><i class="fas fa-user-tie icon-style"></i><strong>Tour Guide:</strong> {{ trip.get('Tour Guide', 'N/A') }}</p>
+                    <p><i class="fas fa-users icon-style"></i><strong>Group Size:</strong> {{ trip.get('Group Size', 'N/A') }}</p>
+                    
+                </div>
+            </div>
+
+            
+    
+            <div class="col-md-6">
+                <div class="info-section">
+                    <h5 class="section-title"><i class="fas fa-tags"></i> Additinal information</h5>
+                    <p><i class="fas fa-envelope icon-style"></i><strong>Contact Email:</strong> {{ trip.get('Contact Email', 'N/A') }}</p>
+                    <p><i class="fas fa-phone-alt icon-style"></i><strong>Contact Phone:</strong> {{ trip.get('Contact Phone', 'N/A') }}</p>
+                    <p><i class="fas fa-suitcase icon-style"></i><strong>What to Bring:</strong> {{ trip.get('What to Bring', 'N/A') }}</p>
+                    <p><i class="fas fa-bicycle icon-style"></i><strong>Trip Difficulty:</strong> {{ trip.get('Trip Difficulty', 'N/A') }}</p>
+                    <p><i class="fas fa-language icon-style"></i><strong>Languages Available:</strong> {{ trip.get('Languages Available', 'N/A') }}</p>
+                    <p><i class="fas fa-users icon-style"></i><strong>Age Restrictions:</strong> {{ trip.get('Age Restrictions', 'N/A') }}</p>
+                    <p><i class="fas fa-wheelchair icon-style"></i><strong>Accessibility:</strong> {{ trip.get('Accessibility', 'N/A') }}</p>
+                    <p><i class="fas fa-tags icon-style"></i><strong>Special Offers:</strong> {{ trip.get('Special Offers', 'N/A') }}</p>
+
+                    <p><i class="fas fa-bus icon-style"></i><strong>Transportation Type:</strong> {{ trip.get('Transportation Type', 'N/A') }}</p>
+                    <p><i class="fas fa-utensils icon-style"></i><strong>Meals Included:</strong> {{ trip.get('Meals Included', 'N/A') }}</p>
+                    <p><i class="fas fa-ban icon-style"></i><strong>Cancellation Policy:</strong> {{ trip.get('Cancellation Policy', 'N/A') }}</p>
+
+          <!-- Pricing Section -->
+<div class="section-title">
+    <input type="hidden" name="trip_id" value="{{ trip_id }}">
+    <i class="fas fa-tags"></i> Pricing Information
+</div>
+
+<p><strong>{{ search_params.get('adults', 1) }} Adult(s) x £{{ trip['Price Adult'] }} = £{{ search_params.get('adults', 1) | int * trip['Price Adult'] }}</strong></p>
+
+<p><strong>{{ search_params.get('children', 0) }} Child(ren) x £{{ trip['Price Child'] }} = £{{ search_params.get('children', 0) | int * trip['Price Child'] }}</strong></p>
+
+<h5 class="total-price">Total Price: £{{ (search_params.get('adults', 1) | int * trip['Price Adult']) + (search_params.get('children', 0) | int * trip['Price Child']) }}</h5>
+
+            <p><strong>Included in Price:</strong> {{ trip['Included in Price'] }}</p>
+            <p><strong>Not Included:</strong> {{ trip['Not Included'] }}</p>
+            <p><strong>Cancellation Policy:</strong> {{ trip['Cancellation Policy'] }}</p>
+        </div>
+
+
+      
+                     <!-- Social Media -->
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+                </div>
+            </div>
+        </div>
+
+         
+      
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4"> Call one of our expert to confirm your Booking on 0800030003000</h1>
+
+    <!-- Trip Information Section -->
+     
+    <form method="POST" action="{{ url_for('booking_confirmation', trip_id=trip['Trip ID']) }}">
+
+               
+          <!-- Pricing Section -->
+<div class="section-title">
+    <i class="fas fa-tags"></i> Book it online?</div>
+    
+    <p><strong>Selected Trip Date:</strong> {{ date }}</p>
+    <p><strong>Alternative Date:</strong> {{ alt_day }}</p>
+<p><strong>{{ search_params.get('adults', 1) }} Adult(s) x £{{ trip['Price Adult'] }} = £{{ search_params.get('adults', 1) | int * trip['Price Adult'] }}</strong></p>
+
+<p><strong>{{ search_params.get('children', 0) }} Child(ren) x £{{ trip['Price Child'] }} = £{{ search_params.get('children', 0) | int * trip['Price Child'] }}</strong></p>
+
+<h5 class="total-price">Total Price: £{{ (search_params.get('adults', 1) | int * trip['Price Adult']) + (search_params.get('children', 0) | int * trip['Price Child']) }}</h5>
+
+        <!-- Payment Method Section -->
+        <div class="payment-method">
+            <input type="hidden" name="trip_id" value="{{ trip_id }}">
+            <h5><i class="fas fa-credit-card icon-style"></i> Payment Method</h5>
+            <ul class="nav nav-tabs" id="paymentTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link active" id="credit-card-tab" data-bs-toggle="tab" href="#credit-card" role="tab" aria-controls="credit-card" aria-selected="true"><i class="fas fa-credit-card"></i> Credit Card</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="bank-transfer-tab" data-bs-toggle="tab" href="#bank-transfer" role="tab" aria-controls="bank-transfer" aria-selected="false"><i class="fas fa-university"></i> Bank Transfer</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="paypal-tab" data-bs-toggle="tab" href="#paypal" role="tab" aria-controls="paypal" aria-selected="false"><i class="fab fa-paypal"></i> PayPal</a>
+                </li>
+            </ul>
+
+            <div class="tab-content mt-3" id="paymentTabsContent">
+                <!-- Credit Card Tab -->
+                <input type="hidden" name="trip_id" value="{{ trip_id }}">
+                <div class="tab-pane fade show active" id="credit-card" role="tabpanel" aria-labelledby="credit-card-tab">
+                    <div class="mb-3">
+                        <label for="card-name" class="form-label">Cardholder Name</label>
+                        <input type="text" class="form-control" id="card-name" name="card_name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="card-number" class="form-label">Card Number</label>
+                        <input type="text" class="form-control" id="card-number" name="card_number" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="card-expiry" class="form-label">Expiry Date</label>
+                        <input type="month" class="form-control" id="card-expiry" name="card_expiry" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="card-cvc" class="form-label">CVC</label>
+                        <input type="text" class="form-control" id="card-cvc" name="card_cvc" required>
+                    </div>
+                </div>
+                
+                <!-- Bank Transfer Tab -->
+                <div class="tab-pane fade" id="bank-transfer" role="tabpanel" aria-labelledby="bank-transfer-tab">
+                    <p>Transfer your payment to the following bank account:</p>
+                    <p><strong>Bank Name:</strong> XYZ Bank</p>
+                    <p><strong>Account Number:</strong> 123456789</p>
+                    <p><strong>Sort Code:</strong> 12-34-56</p>
+                    <p><strong>Reference:</strong> Your Booking ID</p>
+                </div>
+                
+                <!-- PayPal Tab -->
+                <div class="tab-pane fade" id="paypal" role="tabpanel" aria-labelledby="paypal-tab">
+                    <p>Proceed to PayPal to complete your payment.</p>
+                </div>
+            </div>
+            <!-- Add this before closing </body> tag for Bootstrap JS and its dependencies (Popper.js) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+        </div>
+
+        <!-- Customer Information Section -->
+<div class="section-title">
+    <i class="fas fa-user"></i> Your Booking Information
+</div>
+<div class="row">
+    <div class="col-md-4 mb-3">
+        <label for="name" class="form-label">Full Name</label>
+        <input type="text" class="form-control" id="name" name="name" placeholder="John Doe" required>
+    </div>
+    <div class="col-md-4 mb-3">
+        <label for="email" class="form-label">Email Address</label>
+        <input type="email" class="form-control" id="email" name="email" placeholder="john.doe@example.com" required>
+    </div>
+    <div class="col-md-4 mb-3">
+        <label for="phone" class="form-label">Phone Number</label>
+        <input type="tel" class="form-control" id="phone" name="phone" placeholder="123-456-7890" required>
+    </div>
+</div>
+
+<!-- New Field: How Did You Hear About Us? -->
+<div class="row">
+    <div class="col-md-6 mb-3">
+        <label for="how_heard" class="form-label">How did you hear about us?</label>
+        <select class="form-control" id="how_heard" name="how_heard" required>
+            <option value="" selected disabled>Select an option</option>
+            <option value="Google Search">Google Search</option>
+            <option value="Facebook">Facebook</option>
+            <option value="Instagram">Instagram</option>
+            <option value="TripAdvisor">TripAdvisor</option>
+            <option value="Friend Recommendation">Friend Recommendation</option>
+            <option value="Other">Other</option>
+        </select>
+    </div>
+
+    <!-- New Field: Where are you staying? -->
+    <div class="col-md-6 mb-3">
+        <label for="stay_location" class="form-label">Where are you staying?</label>
+        <input type="text" class="form-control" id="stay_location" name="stay_location" placeholder="Hotel / Resort Name" required>
+    </div>
+</div>
+
+        
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary" id="complete-booking">Complete Booking</button>
+    </form>
+</div>
+
+<script>
+    document.getElementById("payment_method").addEventListener("change", function() {
+        var paymentMethod = this.value;
+        
+        // Hide all payment method fields initially
+        document.getElementById("credit_card_fields").style.display = "none";
+        document.getElementById("bank_transfer_fields").style.display = "none";
+        document.getElementById("paypal_fields").style.display = "none";
+        
+        // Show fields based on the selected payment method
+        if (paymentMethod == "Credit Card") {
+            document.getElementById("credit_card_fields").style.display = "block";
+        } else if (paymentMethod == "Bank Transfer") {
+            document.getElementById("bank_transfer_fields").style.display = "block";
+        } else if (paymentMethod == "PayPal") {
+            document.getElementById("paypal_fields").style.display = "block";
+        }
+    });
+
+    // Trigger the change event to display the correct fields when the page loads
+    document.getElementById("payment_method").dispatchEvent(new Event("change"));
+</script>
+
+
+
+        <!-- Stunning Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="row">
+                    <!-- Logo & Description -->
+                    <div class="col-md-4">
+                        <h4 class="footer-logo">EgyptTrips <i class="fas fa-globe-africa"></i></h4>
+                        <p>Discover the beauty of Egypt with expertly curated trips and excursions.</p>
+                    </div>
+        
+                    <!-- Quick Links -->
+                    <div class="col-md-4">
+                        <h5>Quick Links</h5>
+                        <ul class="footer-links">
+                            <li><a href="/">{{ _('Home') }}</a></li>
+                            <li><a href="/about">{{ _('About') }}</a></li>
+                            <li><a href="/contact">{{ _('Contact') }}</a></li>
+                            <li><a href="/quote">{{ _('Request a Quote') }}</a></li>
+                        </ul>
+                        <a href="/privacy">Privacy Policy</a> | <a href="/terms">Terms of Service</a></p>
+                    </div>
+        
+                    <!-- Social Media -->
+                    <div class="col-md-4">
+                        <h5>Follow Us</h5>
+                        <div class="social-icons">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                </div>
+        
+                <!-- Copyright -->
+                <div class="footer-bottom">
+                    <p>&copy; 2025 EgyptTrips. All rights reserved.</p>
+                </div>
+            </div>
+    </div>
+</body>
+</html>

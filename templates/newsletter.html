@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Newsletter</title>
+    <!-- Bootstrap 5 CDN for responsive design and styles -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            background-color: #f7f8fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .container {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            max-width: 900px;
+            margin: 30px auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            color: #4e73df;
+            font-size: 36px;
+            font-weight: 600;
+        }
+
+        .header p {
+            color: #6c757d;
+            font-size: 16px;
+        }
+
+        .btn-custom {
+            background-color: #4e73df;
+            color: white;
+            border-radius: 25px;
+            padding: 10px 20px;
+            width: 100%;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-custom:hover {
+            background-color: #2e59d9;
+            cursor: pointer;
+        }
+
+        .form-label {
+            font-weight: bold;
+            color: #495057;
+        }
+
+        .form-control, .textarea, .btn-custom {
+            border-radius: 15px;
+        }
+
+        .preview-section {
+            margin-top: 40px;
+            background: #f9fafb;
+            border-radius: 10px;
+            padding: 20px;
+            border: 1px solid #ddd;
+        }
+
+        .preview-section h3 {
+            color: #007bff;
+            font-weight: bold;
+        }
+
+        .preview-section p {
+            font-size: 16px;
+            color: #6c757d;
+        }
+
+        .footer {
+            margin-top: 20px;
+            text-align: center;
+            color: #6c757d;
+        }
+
+        .footer a {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        .footer a:hover {
+            color: #0056b3;
+        }
+
+        .alert {
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        /* Custom Styles for Image and Video Previews */
+        .img-preview, .video-preview {
+            max-width: 100%;
+            border-radius: 15px;
+        }
+
+        .img-preview {
+            margin-top: 15px;
+            border: 2px solid #ddd;
+        }
+
+        .video-preview {
+            margin-top: 15px;
+            border: 2px solid #ddd;
+        }
+
+        .custom-footer {
+            color: #495057;
+            font-size: 14px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Create Your Stunning Newsletter</h1>
+            <p class="text-muted">Craft and preview your newsletter before sending it to your audience.</p>
+        </div>
+
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <!-- Newsletter Form -->
+        <form action="{{ url_for('newsletter') }}" method="POST" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="title" class="form-label">Newsletter Title</label>
+                <input type="text" class="form-control" id="title" name="title" placeholder="Enter the title of your newsletter" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="content" class="form-label">Newsletter Content</label>
+                <textarea class="form-control textarea" id="content" name="content" rows="8" placeholder="Write your newsletter content here..." required></textarea>
+            </div>
+
+            <div class="mb-3">
+                <label for="header" class="form-label">Header Image (Optional)</label>
+                <input type="file" class="form-control" id="header" name="header" accept="image/*">
+            </div>
+
+            <div class="mb-3">
+                <label for="image" class="form-label">Add Image (Optional)</label>
+                <input type="file" class="form-control" id="image" name="image" accept="image/*">
+            </div>
+
+            <div class="mb-3">
+                <label for="video" class="form-label">Add Video (Optional)</label>
+                <input type="file" class="form-control" id="video" name="video" accept="video/*">
+            </div>
+
+            <div class="mb-3">
+                <label for="footer" class="form-label">Footer Text (Optional)</label>
+                <textarea class="form-control" id="footer" name="footer" rows="3" placeholder="Enter footer text here..."></textarea>
+            </div>
+
+            <button type="submit" class="btn-custom">Preview Newsletter</button>
+        </form>
+
+        <!-- Content Preview Section -->
+        {% if preview_data %}
+        <div class="preview-section">
+            <h3>Newsletter Preview</h3>
+            <p><strong>Title:</strong> {{ preview_data['title'] }}</p>
+            <p><strong>Content:</strong> {{ preview_data['content'] }}</p>
+
+            {% if preview_data['header'] %}
+                <img src="{{ url_for('static', filename='uploads/' + preview_data['header']) }}" alt="Header Image" class="img-preview">
+            {% endif %}
+            {% if preview_data['image'] %}
+                <img src="{{ url_for('static', filename='uploads/' + preview_data['image']) }}" alt="Image" class="img-preview">
+            {% endif %}
+            {% if preview_data['video'] %}
+                <video controls class="video-preview">
+                    <source src="{{ url_for('static', filename='uploads/' + preview_data['video']) }}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            {% endif %}
+            {% if preview_data['footer'] %}
+                <footer class="custom-footer mt-3">
+                    <p>{{ preview_data['footer'] }}</p>
+                </footer>
+            {% endif %}
+
+            <form action="{{ url_for('save_newsletter') }}" method="POST">
+                <button type="submit" class="btn-custom mt-3">Save Newsletter</button>
+            </form>
+        </div>
+        {% endif %}
+
+        <div class="footer">
+            <p>Created with ❤️ by <a href="#">Your Company</a></p>
+
+         
+                <hr>
+                <a href="{{ url_for('home') }}" class="btn btn-secondary">Back to Dashboard</a>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

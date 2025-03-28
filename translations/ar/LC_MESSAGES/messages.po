@@ -1,0 +1,200 @@
+# Arabic translations for PROJECT.
+# Copyright (C) 2025 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2025-03-21 12:00+0000\n"
+"PO-Revision-Date: 2025-03-21 03:59+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: ar\n"
+"Language-Team: ar <LL@li.org>\n"
+"Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : "
+"n%100>=3 && n%100<=10 ? 3 : n%100>=0 && n%100<=2 ? 4 : 5);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+
+#: templates/about.html:322 templates/booking.html:347
+#: templates/booking.html:369 templates/contact.html:361
+#: templates/request_quote.html:313 templates/result.html:321
+#: templates/search.html:892 templates/trip_details.html:762
+msgid "Home"
+msgstr "الصفحه الرئيسيه"
+
+#: templates/about.html:323 templates/booking.html:348
+#: templates/booking.html:370 templates/contact.html:362
+#: templates/request_quote.html:314 templates/result.html:322
+#: templates/search.html:893 templates/trip_details.html:763
+msgid "About"
+msgstr "عننا"
+
+#: templates/about.html:324 templates/booking.html:349
+#: templates/booking.html:371 templates/contact.html:363
+#: templates/request_quote.html:315 templates/result.html:323
+#: templates/search.html:894 templates/trip_details.html:764
+msgid "Contact"
+msgstr "اتصل بنا"
+
+#: templates/about.html:325 templates/booking.html:350
+#: templates/booking.html:372 templates/contact.html:364
+#: templates/request_quote.html:316 templates/result.html:324
+#: templates/search.html:895 templates/trip_details.html:765
+msgid "Request a Quote"
+msgstr "طلب اسعار"
+
+msgid "Welcome"
+msgstr "أهلاً وسهلاً"
+
+msgid "Search"
+msgstr "ابحث"
+
+msgid "Destination"
+msgstr "الوجهة"
+
+msgid "Select destination"
+msgstr "اختر الوجهة"
+
+msgid "Preferred Date"
+msgstr "التاريخ"
+
+msgid "Alternative Day"
+msgstr "  تاريخ اخر"
+
+msgid "Search Trips"
+msgstr " بحث الرحلات"
+
+
+msgid "Adults"
+msgstr "البالغين"
+
+msgid "Children"
+msgstr "الأطفال"
+
+msgid "Total Price"
+msgstr "السعر الإجمالي"
+
+msgid "Rating"
+msgstr "التقييم"
+
+msgid "Featured Trips"
+msgstr "رحلات مميزة"
+
+msgid "Booking Information"
+msgstr "معلومات الحجز"
+
+msgid "Book Now"
+msgstr "احجز الآن"
+
+msgid "Trip"
+msgstr "رحلة"
+
+msgid "Trips"
+msgstr "رحلات"
+
+msgid "Reviews"
+msgstr "المراجعات"
+
+msgid "Add Review"
+msgstr "أضف مراجعة"
+
+msgid "Thank you for your review!"
+msgstr "شكراً لمراجعتك!"
+
+msgid "No trips available"
+msgstr "لا توجد رحلات متاحة"
+
+msgid "Show More"
+msgstr "عرض المزيد"
+
+msgid "Your booking is confirmed!"
+msgstr "تم تأكيد حجزك!"
+
+msgid "Sorry, no results found"
+msgstr "عذراً، لم يتم العثور على نتائج"
+
+msgid "Book a Trip"
+msgstr "احجز رحلة"
+
+msgid "Total"
+msgstr "الإجمالي"
+
+msgid "Cancel"
+msgstr "إلغاء"
+
+msgid "Name"
+msgstr "الاسم"
+
+msgid "Email"
+msgstr "البريد الإلكتروني"
+
+msgid "Phone"
+msgstr "الهاتف"
+
+msgid "Submit"
+msgstr "إرسال"
+
+msgid "Thank you for booking with us!"
+msgstr "شكراً لحجزك معنا!"
+
+msgid "Error"
+msgstr "خطأ"
+
+msgid "Your session has expired, please log in again"
+msgstr "انتهت صلاحية الجلسة، يرجى تسجيل الدخول مرة أخرى"
+
+msgid "Invalid credentials"
+msgstr "بيانات الاعتماد غير صحيحة"
+
+msgid "Language"
+msgstr "اللغة"
+
+msgid "Select Language"
+msgstr "اختر اللغة"
+
+msgid "Find Your Perfect Excursion in Egypt"
+msgstr "ابحت عن الرحله المفضله  بمصر"
+
+
+msgid "Explore breathtaking locations and book your dream adventure."
+msgstr "استكشف أماكن مذهلة واحجز مغامرتك المثالية."
+
+msgid "Explore Top Destinations with Our Handpicked Popular Trips!"
+msgstr "استكشف أفضل الوجهات مع رحلاتنا المختارة بعناية!"
+
+msgid "View Details"
+msgstr "عرض التفاصيل"
+
+Where warm hospitality meets vibrant culture – Experience the Colors of Egypt
+
+
+msgid "Where warm hospitality meets vibrant culture – Experience the Colors of Egypt"
+msgstr "عرض الفيديوهات الخاصه بنا"
+
+msgid "100% Protected"
+msgstr "100٪ محمي"
+
+msgid "We are a member of Travel Trust of Egypt, your money is 100% protected."
+msgstr "نحن عضو في Travel Trust Egypt، أموالك محمية بنسبة 100٪."
+
+msgid "100+ Trips & Holiday Activities"
+msgstr "أكثر من 100 رحلة ونشاط سياحي"
+
+msgid "Enjoy the perfect blend of nature, beach relaxation, and outdoor adventures for your ideal holiday experience."
+msgstr "استمتع بالمزيج المثالي من الطبيعة والاسترخاء على الشاطئ والمغامرات الخارجية لعطلتك المثالية."
+
+msgid "1000s+ Happy Customers"
+msgstr "آلاف العملاء السعداء"
+
+msgid "Our customers can't stop sharing their amazing experiences with us. Join the growing community of satisfied travelers!"
+msgstr "لا يمكن لعملائنا التوقف عن مشاركة تجاربهم الرائعة معنا. انضم إلى مجتمع المسافرين الراضين!"
+
+msgid "60+ Experts & Trusted Suppliers"
+msgstr "أكثر من 60 خبيرًا وموردًا موثوقًا"
+
+msgid "Partnering with the best for a seamless travel experience."
+msgstr "نتعاون مع الأفضل لتجربة سفر سلسة."
