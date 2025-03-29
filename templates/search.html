@@ -13,6 +13,16 @@
     });
 </script>
 
+<script>
+    // Disable right-click on images
+    document.addEventListener("contextmenu", function(e) {
+        if (e.target.tagName === "IMG") {
+            e.preventDefault();  // Disable right-click on images
+        }
+    });
+</script>
+
+
         <style>
         body { 
     font-family: 'Poppins', sans-serif;
@@ -235,7 +245,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 90vh; /* Adjusted for better visibility */
+    height: 80vh; /* Adjusted for better visibility */
     overflow: hidden;
     z-index: -1;
 }
@@ -257,7 +267,7 @@
 /* Mobile Optimization */
 @media (max-width: 768px) {
     .slideshow-container {
-        height: 80vh; /* Adjusts height for small screens */
+        height: 70vh; /* Adjusts height for small screens */
     }
 
     .slideshow-container img {
@@ -276,7 +286,7 @@
       /* Hero Section */
 .hero {
     position: relative;
-    height: 65vh;
+    height: 75vh;
     display: flex;
     width: 100%;
     align-items: center;
@@ -285,36 +295,84 @@
     color: #0b4d80;
     padding: 20px;
 }
+.hero img {
+    width: 100%;
+    height: auto;
+    max-width: 600px; /* Limit image width */
+    margin-bottom: 15px; /* Space between the images */
+    object-fit: contain;
+}
+
 
 .hero h1 {
     font-size: 3rem;
     font-weight: 700;
-    text-shadow: 2px 2px 15px rgba(34, 78, 99, 0.4);
+    text-shadow: 2px 2px 15px rgba(248, 249, 250, 0.4);
     letter-spacing: 1px;
     font-family: 'Poppins', sans-serif;
 }
 
-/* Search Box */
+/* Full-Width Modern Search Box */
 .search-box {
-    background: rgba(19, 101, 139, 0.2);
-    font-size: 1.5rem;
-    font-weight: 500;
+    background: linear-gradient(135deg, #f5f6f7, #bdc7d1); /* Gradient background */
+    font-size: 1.4rem; /* Slightly smaller font size for modern look */
+    font-weight: 600; /* Bolder font for emphasis */
+    color: #9e084e; /* White text color for contrast */
     text-align: center;
-    backdrop-filter: blur(10px);
-    padding: 25px;
-    border-radius: 15px;
-    box-shadow: 0px 6px 12px rgba(65, 50, 50, 0.15);
+    backdrop-filter: blur(15px); /* Stronger blur for more modern feel */
+    padding: 20px 30px;
+    border-radius: 5px; /* Rounded corners for modern design */
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2); /* Soft shadow for a floating effect */
     position: relative;
     z-index: 2;
+    width: 100%; /* Full width */
+    max-width: none; /* No maximum width */
+    margin: 20px 0; /* Remove center alignment and spread out */
+    transition: all 0.3s ease-in-out; /* Smooth hover effect */
+}
+
+/* Input field within the search box */
+.search-box input {
+    width: 100%; /* Make the input field take up full width */
+    padding: 15px 20px; /* Adjust padding for better fit */
+    font-size: 1.3rem;
+    font-weight: 500;
+    border: none;
+    border-radius: 30px;
+    background-color: rgba(255, 255, 255, 0.8); /* Light background for input field */
+    color: #333333; /* Dark text for the input field */
+    outline: none; /* Remove outline */
+    box-shadow: inset 0px 4px 8px rgba(0, 0, 0, 0.1); /* Subtle inner shadow */
+    transition: all 0.3s ease; /* Smooth transition for focus effect */
+}
+
+/* Input field focus effect */
+.search-box input:focus {
+    background-color: #fff; /* Lighter background on focus */
+    box-shadow: inset 0px 4px 12px rgba(0, 0, 0, 0.15); /* More pronounced shadow on focus */
+    border: 2px solid #feb47b; /* Change border color on focus */
+}
+
+/* Hover effect on the search box */
+.search-box:hover {
+    transform: translateY(-5px); /* Lift the box slightly on hover */
+    box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.3); /* More prominent shadow */
 }
 
 /* Mobile Styles */
 @media (max-width: 768px) {
-    .hero {
-        text-align: center;
-        padding: 15px;
-        height: 65vh;
+    .search-box {
+        font-size: 1.3rem;
+        padding: 18px;
+        border-radius: 25px;
+        box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.15);
     }
+
+    .search-box input {
+        width: 100%; /* Full width on mobile */
+        padding: 15px 20px; /* Adjust padding for better fit */
+    }
+}
 
     .hero h1 {
         font-size: 2rem;
@@ -328,9 +386,7 @@
         border-radius: 12px;
         box-shadow: 0px 4px 8px rgba(65, 50, 50, 0.1);
     }
-}
-
-        
+       
 
   /* ========== Popular Trips Section Styling ========== */
 
@@ -1019,8 +1075,7 @@
         <img src="{{ url_for('static', filename='SaleBig.jpg') }}" alt="Get Your Guide" />
         </a>
 
-        <img src="{{ url_for('static', filename='daytrips.jpg') }}" alt="Get Your Guide" />
-        </div>
+       </div>
     </div>
 </div>  
         <!-- Search Box -->
