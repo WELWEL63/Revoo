@@ -45,7 +45,7 @@ def get_csv_file():
         ##'es': "egypttrips_spanish.csv",
         ##'cs': "egypttrips_czech.csv",
         ##'zh-CN': "egypttrips_chinese.csv",
-        'en': "egypttrips2.csv"  # Default English CSV
+        'en': "egypttrips55.csv"  # Default English CSV
     }
     return csv_files.get(lang, "egypttrips2.csv")
 ########################################################################################################################
@@ -222,9 +222,9 @@ def save_review_to_csv(review_data):
         writer.writerow([
             review_data["trip_id"],
             review_data["name"],
-            review_data["email"],
             review_data["rating"],
-            review_data["comment"]
+            review_data["comment"],
+            review_data["email"],
         ])
 
 def load_reviews_for_trip(trip_id):

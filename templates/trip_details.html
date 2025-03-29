@@ -16,7 +16,7 @@ body {
     padding: 0;
     background: #f4f7fc;
     color: #2a476d;
-    font-size: 2rem;
+    font-size: 3rem;
     font-weight: 500;
     line-height: 1.6;
 }
@@ -152,42 +152,37 @@ h1, h5 {
     letter-spacing: 1px;
 }
 
-/* Container for Floating Social Icons */
-.social-icons-container {
-    position: fixed;
-    bottom: 20px;  /* Adjust to where you want the icons to start vertically */
-    right: 20px;   /* Adjust horizontal position */
-    z-index: 1000;
-    display: flex;
-    flex-direction: column;  /* Aligns the icons vertically */
-    align-items: center;  /* Centers the icons horizontally */
-}
-
 /* WhatsApp Floating Logo */
 .whatsapp-logo {
-    margin-bottom: 10px; /* Space between icons */
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
 }
 
 .whatsapp-logo img {
-    width: 60px;  /* Default size for larger screens */
-    height: 60px;
+    width: 80px;  /* Default size for larger screens */
+    height: 80px;
     border-radius: 50%;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease;
 }
 
 .whatsapp-logo img:hover {
-    transform: scale(1.1);  /* Adds hover effect to the logo */
+    transform: scale(1.1);  /* Adds a hover effect to the logo */
 }
 
 /* Facebook Floating Logo */
 .facebook-logo {
-    margin-bottom: 10px; /* Space between icons */
+    position: fixed;
+    bottom: 20px;
+    right: 100px; /* Adjust this value to position further left or right */
+    z-index: 1000;
 }
 
 .facebook-logo img {
-    width: 60px;  /* Default size for larger screens */
-    height: 60px;
+    width: 80px;  /* Default size for larger screens */
+    height: 80px;
     border-radius: 50%;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease;
@@ -197,72 +192,114 @@ h1, h5 {
     transform: scale(1.1);  /* Adds hover effect to the logo */
 }
 
-/* TripAdvisor Floating Logo */
+/* Mobile Specific Styling */
+@media (max-width: 768px) {
+    /* WhatsApp Floating Logo */
+    .whatsapp-logo {
+        right: 10px; /* Slightly adjust the position for smaller screens */
+        bottom: 10px; /* Move the icon up a little */
+    }
+
+    .whatsapp-logo img {
+        width: 50px;  /* Adjust size for mobile */
+        height: 50px;
+    }
+
+    /* Facebook Floating Logo */
+    .facebook-logo {
+        right: 80px; /* Adjust this value for better positioning */
+        bottom: 10px; /* Move the icon up a little */
+    }
+
+    .facebook-logo img {
+        width: 60px;  /* Adjust size for mobile */
+        height: 60px;
+    }
+}
+
+/* Extra Small Mobile Styling (Optional) */
+@media (max-width: 480px) {
+    /* WhatsApp Floating Logo */
+    .whatsapp-logo {
+        right: 5px;
+        bottom: 5px;
+    }
+
+    .whatsapp-logo img {
+        width: 45px;  /* Smaller size for very small screens */
+        height: 45px;
+    }
+
+    /* Facebook Floating Logo */
+    .facebook-logo {
+        right: 60px; /* Adjust to fit the screen */
+        bottom: 5px; /* Adjust the position */
+    }
+
+    .facebook-logo img {
+        width: 50px;  /* Smaller size for very small screens */
+        height: 50px;
+    }
+}
+
+        /* Social Media Icons */
+        .social-icons-header {
+            display: flex;
+            gap: 15px;
+        }
+        .social-icons-header a {
+            color: white;
+            font-size: 18px;
+            transition: 0.3s;
+        }
+        .social-icons-header a:hover {
+            color: #f4a261;
+            transform: scale(1.1);
+        }
+
+        /* TripAdvisor Floating Logo */
 .tripadvisor-logo {
-    margin-bottom: 10px; /* Space between icons */
+    position: fixed;
+    bottom: 20px;
+    right: 180px; /* Adjust this value to position further left */
+    z-index: 1000;
 }
 
 .tripadvisor-logo img {
-    width: 60px;  /* Default size for larger screens */
-    height: 60px;
+    width: 80px;  /* Default size for larger screens */
+    height: 80px;
     border-radius: 50%;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease;
 }
 
 .tripadvisor-logo img:hover {
-    transform: scale(1.1);  /* Adds hover effect to the logo */
-}
-
-/* Get Your Guide Floating Logo */
-.getyourguide-logo {
-    margin-bottom: 10px; /* Space between icons */
-}
-
-.getyourguide-logo img {
-    width: 60px;  /* Default size for larger screens */
-    height: 60px;
-    border-radius: 50%;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease;
-}
-
-.getyourguide-logo img:hover {
-    transform: scale(1.1);  /* Adds hover effect to the logo */
+    transform: scale(1.1);  /* Adds a hover effect to the logo */
 }
 
 /* Mobile Specific Styling */
 @media (max-width: 768px) {
-    .social-icons-container {
-        right: 10px; /* Adjust horizontal position for smaller screens */
+    .tripadvisor-logo {
+        right: 150px; /* Adjust position for smaller screens */
+        bottom: 10px;
     }
 
-    .whatsapp-logo img, .facebook-logo img, .tripadvisor-logo img, .getyourguide-logo img {
-        width: 50px;  /* Adjust size for mobile */
+    .tripadvisor-logo img {
+        width: 60px;  /* Adjust size for mobile */
+        height: 60px;
+    }
+}
+
+/* Extra Small Mobile Styling (Optional) */
+@media (max-width: 480px) {
+    .tripadvisor-logo {
+        right: 120px;
+        bottom: 5px;
+    }
+
+    .tripadvisor-logo img {
+        width: 50px;  /* Smaller size for very small screens */
         height: 50px;
-    }
-}
-
-/* Extra Small Mobile Styling (Optional) */
-@media (max-width: 480px) {
-    .social-icons-container {
-        right: 5px; /* Adjust horizontal position for very small screens */
-    }
-
-    .whatsapp-logo img, .facebook-logo img, .tripadvisor-logo img, .getyourguide-logo img {
-        width: 45px;  /* Smaller size for very small screens */
-        height: 45px;
-    }
-}
-/* Extra Small Mobile Styling (Optional) */
-@media (max-width: 480px) {
-    .social-icons-container {
-        right: 5px; /* Adjust horizontal position for very small screens */
-    }
-
-    .whatsapp-logo img, .facebook-logo img, .tripadvisor-logo img {
-        width: 45px;  /* Smaller size for very small screens */
-        height: 45px;
     }
 }
 
@@ -867,7 +904,6 @@ h1, h5 {
 </div>
 
 <div class="social-icons-container">
-            
     <!-- WhatsApp Logo --> 
     <div class="whatsapp-logo">
         <a href="https://wa.me/+447591464519">
@@ -875,7 +911,7 @@ h1, h5 {
         </a>
     </div>
 
-      <!-- Facebook Logo -->
+    <!-- Facebook Logo -->
     <div class="facebook-logo">
         <a href="https://www.facebook.com/profile.php?id=61564874641704" target="_blank">
             <img src="{{ url_for('static', filename='facebook.jpg') }}" alt="Facebook" />
@@ -887,20 +923,9 @@ h1, h5 {
         <a href="https://www.tripadvisor.co.uk/Profile/179egyptr?tab=reviews" target="_blank">
             <img src="{{ url_for('static', filename='tripadvos.jpg') }}" alt="TripAdvisor" />
         </a>
-
-        <!-- Get Your Guide Logo -->
-<div class="getyourguide-logo">
-<a href="https://www.getyourguide.com/?partner_id=4ELHU8V&utm_medium=online_publisher&cmp=desk&msclkid=95ce669c037414b512410179cccaef3a" target="_blank">
-    <img src="{{ url_for('static', filename='daytrips.jpg') }}" alt="Get Your Guide" />
-</a>
-</div>
-</div>   
-
     </div>
 </div>
-          
 
-</header>
               
               <!-- Slideshow Container -->
                
